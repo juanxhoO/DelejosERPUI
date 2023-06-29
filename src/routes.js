@@ -44,10 +44,11 @@ import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
-
+import Providers from "layouts/providers";
 // @mui icons
 import Icon from "@mui/material/Icon";
-
+import Reports from "layouts/reports";
+import Clients from "layouts/clients";
 const routes = [
   {
     type: "collapse",
@@ -56,6 +57,38 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+  },
+  {
+    type: "collapse",
+    name: "Providers",
+    key: "providers",
+    icon: <Icon fontSize="small">providers</Icon>,
+    route: "/providers",
+    component: <Providers />,
+  },
+  {
+    type: "collapse",
+    name: "Clients",
+    key: "clients",
+    icon: <Icon fontSize="small">clients</Icon>,
+    route: "/clients",
+    component: <Clients />,
+  },
+  {
+    type: "collapse",
+    name: "Orders",
+    key: "orders",
+    icon: <Icon fontSize="small">orders</Icon>,
+    route: "/orders",
+    component: <Reports />,
+  },
+  {
+    type: "collapse",
+    name: "Reports",
+    key: "reports",
+    icon: <Icon fontSize="small">reports</Icon>,
+    route: "/reports",
+    component: <Reports />,
   },
   {
     type: "collapse",
