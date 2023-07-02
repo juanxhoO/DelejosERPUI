@@ -45,7 +45,7 @@ import createCache from "@emotion/cache";
 
 // Material Dashboard 2 React routes
 import routes from "routes";
-
+import RequireAuth from "components/RequireAuth";
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
@@ -165,7 +165,7 @@ export default function App() {
           </>
         )}
         {layout === "vr" && <Configurator />}
-        <Routes>
+        <Routes element={<RequireAuth />}>
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
@@ -196,3 +196,4 @@ export default function App() {
     </ThemeProvider>
   );
 }
+w;
