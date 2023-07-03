@@ -1,20 +1,17 @@
 import React from "react";
-import { render } from "react-dom";
 import useAuth from "hooks/useAuth";
 import MDButton from ".";
-
-const LogoutListener = () => {};
+const LogoutListener = () => {
+  console.log("test logout");
+};
 
 function LogoutBtn() {
   const { auth } = useAuth();
   console.log("est logout");
   return (
-    <div>
-      <p>dsdsd</p>
-      <MDButton component="a" target="_blank" rel="noreferrer" variant="gradient" color="red">
-        Logout
-      </MDButton>
-    </div>
+    <MDButton component="a" target="_blank" rel="noreferrer" variant="gradient">
+      Logout
+    </MDButton>
   );
 }
 
