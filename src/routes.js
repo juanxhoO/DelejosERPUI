@@ -53,6 +53,7 @@ const routes = [
   {
     type: "collapse",
     name: "Dashboard",
+    context: "private",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
@@ -61,6 +62,7 @@ const routes = [
   {
     type: "collapse",
     name: "Providers",
+    context: "private",
     key: "providers",
     icon: <Icon fontSize="small">providers</Icon>,
     route: "/providers",
@@ -69,6 +71,7 @@ const routes = [
   {
     type: "collapse",
     name: "Clients",
+    context: "private",
     key: "clients",
     icon: <Icon fontSize="small">clients</Icon>,
     route: "/clients",
@@ -77,6 +80,7 @@ const routes = [
   {
     type: "collapse",
     name: "Orders",
+    context: "private",
     key: "orders",
     icon: <Icon fontSize="small">orders</Icon>,
     route: "/orders",
@@ -85,6 +89,7 @@ const routes = [
   {
     type: "collapse",
     name: "Reports",
+    context: "private",
     key: "reports",
     icon: <Icon fontSize="small">reports</Icon>,
     route: "/reports",
@@ -93,6 +98,7 @@ const routes = [
   {
     type: "collapse",
     name: "Tables",
+    context: "private",
     key: "tables",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/tables",
@@ -101,6 +107,7 @@ const routes = [
   {
     type: "collapse",
     name: "Billing",
+    context: "private",
     key: "billing",
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",
@@ -108,14 +115,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
-  },
-  {
-    type: "collapse",
+    context: "private",
     name: "Notifications",
     key: "notifications",
     icon: <Icon fontSize="small">notifications</Icon>,
@@ -125,6 +125,7 @@ const routes = [
   {
     type: "collapse",
     name: "Profile",
+    context: "private",
     key: "profile",
     icon: <Icon fontSize="small">person</Icon>,
     route: "/profile",
@@ -132,6 +133,7 @@ const routes = [
   },
   {
     type: "collapse",
+    context: "public",
     name: "Sign In",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
@@ -140,6 +142,7 @@ const routes = [
   },
   {
     type: "collapse",
+    context: "public",
     name: "Sign Up",
     key: "sign-up",
     icon: <Icon fontSize="small">assignment</Icon>,

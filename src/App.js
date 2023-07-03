@@ -115,7 +115,20 @@ export default function App() {
         return getRoutes(route.collapse);
       }
 
-      if (route.route) {
+      if (route.context == "public") {
+        return <Route exact path={route.route} element={route.component} key={route.key} />;
+      }
+
+      return null;
+    });
+
+  const getRoutesPrivate = (allRoutes) =>
+    allRoutes.map((route) => {
+      if (route.collapse) {
+        return getRoutes(route.collapse);
+      }
+
+      if (route.context == "private") {
         return <Route exact path={route.route} element={route.component} key={route.key} />;
       }
 
@@ -146,32 +159,7 @@ export default function App() {
     </MDBox>
   );
 
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName="Material Dashboard 2"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-            <Configurator />
-            {configsButton}
-          </>
-        )}
-        {layout === "vr" && <Configurator />}
-        <Routes element={<RequireAuth />}>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
+  return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (
@@ -189,11 +177,14 @@ export default function App() {
         </>
       )}
       {layout === "vr" && <Configurator />}
+
       <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route element={<RequireAuth />}>
+          {getRoutesPrivate(routes)}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Route>
+        <Route>{getRoutes(routes)}</Route>
       </Routes>
     </ThemeProvider>
   );
 }
-w;

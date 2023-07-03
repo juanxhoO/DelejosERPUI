@@ -34,7 +34,7 @@ import MDButton from "components/MDButton";
 
 // Material Dashboard 2 React example components
 import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
-
+import LogoutBtn from "components/MDButton/LogoutBtn";
 // Custom styles for the Sidenav
 import SidenavRoot from "examples/Sidenav/SidenavRoot";
 import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
@@ -46,6 +46,8 @@ import {
   setTransparentSidenav,
   setWhiteSidenav,
 } from "context";
+import { Button } from "@mui/material";
+import { Logout } from "@mui/icons-material";
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const [controller, dispatch] = useMaterialUIController();
@@ -179,6 +181,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         }
       />
       <List>{renderRoutes}</List>
+      <LogoutBtn />
     </SidenavRoot>
   );
 }

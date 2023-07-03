@@ -21,6 +21,7 @@ import { AuthProvider } from "context/AuthProvider";
 
 // Material Dashboard 2 React Context Provider
 import { MaterialUIControllerProvider } from "context";
+import { Route, Routes } from "react-router-dom";
 
 const container = document.getElementById("app");
 const root = createRoot(container);
@@ -29,7 +30,9 @@ root.render(
   <BrowserRouter>
     <MaterialUIControllerProvider>
       <AuthProvider>
-        <App />
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
       </AuthProvider>
     </MaterialUIControllerProvider>
   </BrowserRouter>
