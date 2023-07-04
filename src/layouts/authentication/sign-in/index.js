@@ -41,14 +41,21 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
+//Authentication Logic coneciton
+import axios from "axios";
+
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
-  const [] = useState();
-
-
+  const [email, SetEmail] = useState();
+  const [pwd, SetPwd] = useState();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(pwd);
+    console.log(email);
+  };
 
   return (
     <BasicLayout image={bgImage}>
@@ -86,12 +93,27 @@ function Basic() {
           </Grid> */}
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          <MDBox component="form" role="form" onSubmit={handleSubmit}>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput
+                id="email"
+                value={email}
+                onChange={(e) => SetEmail(e.target.value)}
+                type="email"
+                label="Email"
+                fullWidth
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput
+                id="password"
+                type="password"
+                onChange={(e) => SetPwd(e.target.value)}
+                value={pwd}
+                required
+                label="Password"
+                fullWidth
+              />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -106,7 +128,7 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+              <MDButton type="submit" variant="gradient" color="info" fullWidth>
                 sign in
               </MDButton>
             </MDBox>
