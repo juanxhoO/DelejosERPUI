@@ -1,16 +1,14 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 
 import useAuth from "../hooks/useAuth";
+import { Typography } from "@mui/material";
+import { useEffect } from "react";
 
 const RequireAuth = () => {
   const { auth } = useAuth();
   const location = useLocation();
-
-  if (auth?.accessToken) {
-    console.log("token present");
-  }
   return auth?.accessToken ? (
-    <Outlet />
+    <Outlet></Outlet>
   ) : (
     <Navigate to="/authentication/sign-in" state={{ from: location }} replace />
   );

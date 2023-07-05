@@ -49,6 +49,7 @@ import Providers from "layouts/providers";
 import Icon from "@mui/material/Icon";
 import Reports from "layouts/reports";
 import Clients from "layouts/clients";
+import Shops from "layouts/shops";
 const routes = [
   {
     type: "collapse",
@@ -133,13 +134,22 @@ const routes = [
   },
   {
     type: "collapse",
-    context: "public",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
+    name: "Shops",
+    context: "private",
+    key: "shops",
+    icon: <Icon fontSize="small">person</Icon>,
+    route: "/shops",
+    component: <Shops />,
   },
+  // {
+  //   type: "collapse",
+  //   context: "public",
+  //   name: "Sign In",
+  //   key: "sign-in",
+  //   icon: <Icon fontSize="small">login</Icon>,
+  //   route: "/authentication/sign-in",
+  //   component: <SignIn />,
+  // },
   // {
   //   type: "collapse",
   //   context: "public",

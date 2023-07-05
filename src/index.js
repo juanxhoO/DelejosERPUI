@@ -27,13 +27,15 @@ const container = document.getElementById("app");
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter>
-    <MaterialUIControllerProvider>
-      <AuthProvider>
-        <Routes>
-          <Route path="/*" element={<App />} />
-        </Routes>
-      </AuthProvider>
-    </MaterialUIControllerProvider>
-  </BrowserRouter>
+  <React.StrictMode>
+    <AuthProvider>
+      <BrowserRouter>
+        <MaterialUIControllerProvider>
+          <Routes>
+            <Route path="/*" element={<App />} />
+          </Routes>
+        </MaterialUIControllerProvider>
+      </BrowserRouter>
+    </AuthProvider>
+  </React.StrictMode>
 );
