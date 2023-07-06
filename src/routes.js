@@ -39,17 +39,18 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
-import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
 import Providers from "layouts/providers";
 // @mui icons
 import Icon from "@mui/material/Icon";
 import Reports from "layouts/reports";
 import Clients from "layouts/clients";
 import Shops from "layouts/shops";
+import SignIn from "layouts/authentication/sign-in";
+import Provider from "layouts/providers/Provider";
+import Order from "layouts/orders/Order";
+import Client from "layouts/clients/Client";
 const routes = [
   {
     type: "collapse",
@@ -141,15 +142,38 @@ const routes = [
     route: "/shops",
     component: <Shops />,
   },
-  // {
-  //   type: "collapse",
-  //   context: "public",
-  //   name: "Sign In",
-  //   key: "sign-in",
-  //   icon: <Icon fontSize="small">login</Icon>,
-  //   route: "/authentication/sign-in",
-  //   component: <SignIn />,
-  // },
+  {
+    context: "private",
+    name: "Sign In",
+    key: "sign-in",
+    icon: <Icon fontSize="small">login</Icon>,
+    route: "/authentication/sign-in",
+    component: <SignIn />,
+  },
+  {
+    context: "private",
+    name: "Provider",
+    key: "provider",
+    icon: <Icon fontSize="small">login</Icon>,
+    route: "/providers/:id",
+    component: <Provider />,
+  },
+  {
+    context: "private",
+    name: "Order",
+    key: "order",
+    icon: <Icon fontSize="small">login</Icon>,
+    route: "/orders/:id",
+    component: <Order />,
+  },
+  {
+    context: "private",
+    name: "Provider",
+    key: "provider",
+    icon: <Icon fontSize="small">login</Icon>,
+    route: "/clients/:id",
+    component: <Client />,
+  },
   // {
   //   type: "collapse",
   //   context: "public",

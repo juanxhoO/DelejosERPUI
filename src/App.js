@@ -108,9 +108,14 @@ export default function App() {
       if (route.collapse) {
         return getRoutes(route.collapse);
       }
-
       if (route.context == "private") {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        if (route.param == ":id") {
+          return (
+            <Route exact path={route.route + "/:id"} element={route.component} key={route.key} />
+          );
+        } else {
+          return <Route exact path={route.route} element={route.component} key={route.key} />;
+        }
       }
 
       return null;
