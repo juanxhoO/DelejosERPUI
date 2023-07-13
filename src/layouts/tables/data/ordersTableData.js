@@ -71,7 +71,6 @@ export default function data() {
       { Header: "Provider", accessor: "action", align: "center" },
       { Header: "Client", accessor: "action", align: "center" },
       { Header: "Invoice", accessor: "action", align: "center" },
-
     ],
 
     rows: [

@@ -28,7 +28,6 @@ export default function data() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(location.pathname);
   const Provider = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
