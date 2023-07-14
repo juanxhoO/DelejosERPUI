@@ -51,6 +51,7 @@ import SignIn from "layouts/authentication/sign-in";
 import Provider from "layouts/providers/Provider";
 import Order from "layouts/orders/Order";
 import Client from "layouts/clients/Client";
+import Orders from "layouts/orders";
 const routes = [
   {
     type: "collapse",
@@ -86,7 +87,7 @@ const routes = [
     key: "orders",
     icon: <Icon fontSize="small">orders</Icon>,
     route: "/orders",
-    component: <Reports />,
+    component: <Orders />,
   },
   {
     type: "collapse",
@@ -96,15 +97,6 @@ const routes = [
     icon: <Icon fontSize="small">reports</Icon>,
     route: "/reports",
     component: <Reports />,
-  },
-  {
-    type: "collapse",
-    name: "Tables",
-    context: "private",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
   },
   {
     type: "collapse",

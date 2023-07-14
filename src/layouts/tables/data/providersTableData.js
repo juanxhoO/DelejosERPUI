@@ -55,21 +55,21 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "provider", accessor: "author", width: "45%", align: "left" },
-      { Header: "function", accessor: "function", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
-      { Header: "country", accessor: "country", align: "center" },
-      { Header: "city", accessor: "city", align: "center" },
-      { Header: "email", accessor: "email", align: "center" },
-      { Header: "clave", accessor: "clave", align: "center" },
-      { Header: "telefono1", accessor: "telefono1", align: "center" },
-      { Header: "telefono2", accessor: "telefono2", align: "center" },
+      { Header: "Name", accessor: "name", width: "45%", align: "left" },
+      { Header: "Lastname", accessor: "lastname", align: "left" },
+      { Header: "Contact", accessor: "contact", align: "center" },
+      { Header: "Email", accessor: "email", align: "center" },
+      { Header: "Address", accessor: "address", align: "center" },
+      { Header: "Country", accessor: "country", align: "center" },
+      { Header: "City", accessor: "city", align: "center" },
+      { Header: "Phone1", accessor: "phone1", align: "center" },
+      { Header: "Phone2", accessor: "phone2", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
 
     rows: [
       {
-        author: <Provider image={team2} name="John Michael" email="john@creative-tim.com" />,
+        name: <Provider image={team2} name="John Michael" email="john@creative-tim.com" />,
         function: <Job title="Manager" description="Organization" />,
         status: (
           <MDBox ml={-1}>

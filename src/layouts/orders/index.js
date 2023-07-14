@@ -25,11 +25,10 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Data
-import providersTableData from "layouts/tables/data/providersTableData";
+import ordersTableData from "layouts/tables/data/ordersTableData";
 
-function Providers() {
-  const { columns, rows } = providersTableData();
-  console.log({ rows });
+function Orders() {
+  const { columns, rows } = ordersTableData();
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -68,4 +67,4 @@ function Providers() {
   );
 }
 
-export default Providers;
+export default Orders;

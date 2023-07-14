@@ -28,45 +28,101 @@ import MDInput from "components/MDInput";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import MDButton from "components/MDButton";
 
 function Provider() {
-  const [provider, SetProvider] = useState(null);
   const { id } = useParams();
+  const [inputValues, setInputValues] = useState({});
 
   const rows = [
     {
       label: "Name",
+      id: "name",
+      type: "text",
+    },
+    {
+      label: "Last Name",
+      id: "lastname",
+      type: "text",
+    },
+    {
+      label: "Contact",
+      id: "contact",
+      type: "text",
+    },
+    {
+      label: "Address",
+      id: "address",
+      type: "text",
+    },
+    {
+      label: "Phone Number",
+      id: "phone",
       type: "text",
     },
     {
       label: "Country",
+      id: "country",
       type: "text",
     },
     {
       label: "City",
+      id: "city",
       type: "text",
     },
     {
       label: "Email",
+      id: "email",
       type: "email",
     },
+    {
+      label: "Observations",
+      id: "observations",
+      type: "text",
+    },
   ];
+
+  const person1 = {
+    name: "Juan",
+    lastname: "Granja",
+    country: "Mexico",
+    city: "Guadalajara",
+    email: "ggjuanb@hotmail.com",
+  };
 
   useEffect(() => {
     //Fetching Data from ERP API BACKEND
     const handleProvider = async (param_id) => {
       try {
-        const response = await axios.get(axios);
-        const data = response.data;
-
-        console.log(response);
+        //const response = await axios.get(axios);
+        const data = {
+          name: "Juan",
+          lastname: "Granja",
+          country: "Mexico",
+          city: "Guadalajara",
+          email: "ggjuanb@hotmail.com",
+        };
+        // Update input values with the retrieved data
+        setInputValues(data); // Assuming the response data is in the same structure as person1 object
       } catch (error) {
         console.log(error);
       }
     };
-    //handleProvider(id);
+
+    // Call the handleProvider function passing the id parameter
+    handleProvider(id);
     console.log(id);
   }, []);
+
+  const submitChanges = async () => {
+    console.log("changes submitted");
+    console.log(inputValues);
+    // try {
+    //   const response = await axios.put("/api", inputValues, { withCredentials: true });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
 
   return (
     <DashboardLayout>
@@ -74,21 +130,40 @@ function Provider() {
       <MDBox>
         <p>Provider {id}</p>
         <TableContainer>
-          <MDBox>
+          <MDBox p={4}>
             <Table>
               <TableBody>
                 {rows.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell>
-                      <Typography>{row.label}</Typography>
+                      <Typography sx={{ fontWeight: "bold" }}>{row.label}:</Typography>
                     </TableCell>
                     <TableCell>
-                      <MDInput variant="outlined" label="name" value="Juan Granja"></MDInput>
+                      <MDInput
+                        variant="outlined"
+                        label={row.label}
+                        value={inputValues[row.id] || ""}
+                        onChange={(e) => {
+                          setInputValues((prevValues) => ({
+                            ...prevValues,
+                            [row.id]: e.target.value,
+                          }));
+                        }}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
+            <MDButton
+              variant="gradient"
+              color="primary"
+              onClick={submitChanges}
+              p={4}
+              sx={{ margin: "20px", float: "right" }}
+            >
+              Submit Changes
+            </MDButton>
           </MDBox>
         </TableContainer>
       </MDBox>

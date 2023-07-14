@@ -64,13 +64,13 @@ export default function data() {
       { Header: "Invoice Name", accessor: "email", align: "center" },
       { Header: "Send To", accessor: "clave", align: "center" },
       { Header: "Status", accessor: "telefono1", align: "center" },
-      { Header: "Site", accessor: "telefono2", align: "center" },
+      { Header: "Phone", accessor: "telefono2", align: "center" },
       { Header: "Languaje", accessor: "action", align: "center" },
-      { Header: "Total Order", accessor: "action", align: "center" },
-      { Header: "Status Provider", accessor: "action", align: "center" },
-      { Header: "Provider", accessor: "action", align: "center" },
-      { Header: "Client", accessor: "action", align: "center" },
-      { Header: "Invoice", accessor: "action", align: "center" },
+      { Header: "Site", accessor: "total_order", align: "center" },
+      { Header: "Languaje", accessor: "status_provider", align: "center" },
+      { Header: "Total", accessor: "provider", align: "center" },
+      { Header: "Provider Status", accessor: "client", align: "center" },
+      { Header: "Provider Message", accessor: "invoice", align: "center" },
     ],
 
     rows: [
@@ -85,6 +85,30 @@ export default function data() {
         employed: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             23/04/18
+          </MDTypography>
+        ),
+        action: (
+          <MDTypography
+            onClick={handleEdit}
+            component="a"
+            href="#"
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+          >
+            Edit
+          </MDTypography>
+        ),
+        action: (
+          <MDTypography
+            onClick={handleEdit}
+            component="a"
+            href="#"
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+          >
+            Edit
           </MDTypography>
         ),
         action: (
