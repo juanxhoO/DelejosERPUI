@@ -52,6 +52,8 @@ import Provider from "layouts/providers/Provider";
 import Order from "layouts/orders/Order";
 import Client from "layouts/clients/Client";
 import Orders from "layouts/orders";
+import ClientOrder from "layouts/ClientOrder";
+import ProviderOrder from "layouts/ProviderOrder";
 const routes = [
   {
     type: "collapse",
@@ -146,7 +148,6 @@ const routes = [
     context: "private",
     name: "Provider",
     key: "provider",
-    icon: <Icon fontSize="small">login</Icon>,
     route: "/providers/:id",
     component: <Provider />,
   },
@@ -154,7 +155,6 @@ const routes = [
     context: "private",
     name: "Order",
     key: "order",
-    icon: <Icon fontSize="small">login</Icon>,
     route: "/orders/:id",
     component: <Order />,
   },
@@ -162,9 +162,24 @@ const routes = [
     context: "private",
     name: "Provider",
     key: "provider",
-    icon: <Icon fontSize="small">login</Icon>,
     route: "/clients/:id",
     component: <Client />,
+  },
+
+  {
+    context: "private",
+    name: "Order Provider",
+    key: "order_provider",
+    route: "/order_providers/:id",
+    component: <ProviderOrder />,
+  },
+
+  {
+    context: "private",
+    name: "Order Clients",
+    key: "order_client",
+    route: "/order_clients/:id",
+    component: <ClientOrder />,
   },
   // {
   //   type: "collapse",
