@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import MDButton from "components/MDButton";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function ClientOrder() {
   const params = useParams();
@@ -20,24 +21,33 @@ function ClientOrder() {
   };
   return (
     <DashboardLayout>
+      <DashboardNavbar />
+
       <Card>
-        <MDBox p={2}>
-          <Typography variant="h2" color="text">
+        <MDBox p={5}>
+          <Typography variant="h3" color="text">
             Send to Client
           </Typography>
 
           <div>
-            <span>Order #</span>
-            <span>{params.id}</span>
+            <Typography fontWeight="bold" variant="h6" color="text">
+              Order #:
+            </Typography>
+            <Typography>{params.id}</Typography>
           </div>
 
           <div>
-            <span>Site:</span>
+            <Typography fontWeight="bold" variant="h6" color="text">
+              Site:
+            </Typography>
+
             <span>https://en.delejos.com/</span>
           </div>
 
           <div>
-            <span>Client Status</span>
+            <Typography fontWeight="bold" variant="h6" color="text">
+              Client Status:
+            </Typography>
 
             <select>
               {status.map((option) => (
@@ -49,12 +59,16 @@ function ClientOrder() {
           </div>
 
           <div>
-            <span>Business</span>
+            <Typography fontWeight="bold" variant="h6" color="text">
+              Business:
+            </Typography>
             <input></input>
           </div>
-
           <div>
-            <span>Message</span>
+            <Typography fontWeight="bold" variant="h6" color="text">
+              Message:
+            </Typography>
+
             <textarea rows={8} cols={40}></textarea>
           </div>
 

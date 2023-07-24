@@ -47,7 +47,7 @@ function Clients() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Clients Table
+                  Clients
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>

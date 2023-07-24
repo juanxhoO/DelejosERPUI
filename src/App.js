@@ -45,6 +45,10 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -146,30 +150,32 @@ export default function App() {
   );
 
   return (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
-      <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-            brandName="Delejos ERP"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-          <Configurator />
-          {configsButton}
-        </>
-      )}
-      {layout === "vr" && <Configurator />}
-      <Routes>
-        <Route element={<RequireAuth />}>
-          {getRoutesPrivate(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Route>
-        <Route>{getRoutes(routes)}</Route>
-      </Routes>
-    </ThemeProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <ThemeProvider theme={darkMode ? themeDark : theme}>
+        <CssBaseline />
+        {layout === "dashboard" && (
+          <>
+            <Sidenav
+              color={sidenavColor}
+              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+              brandName="Delejos ERP"
+              routes={routes}
+              onMouseEnter={handleOnMouseEnter}
+              onMouseLeave={handleOnMouseLeave}
+            />
+            <Configurator />
+            {configsButton}
+          </>
+        )}
+        {layout === "vr" && <Configurator />}
+        <Routes>
+          <Route element={<RequireAuth />}>
+            {getRoutesPrivate(routes)}
+            <Route path="*" element={<Navigate to="/dashboard" />} />
+          </Route>
+          <Route>{getRoutes(routes)}</Route>
+        </Routes>
+      </ThemeProvider>
+    </LocalizationProvider>
   );
 }

@@ -19,16 +19,13 @@ Coded by www.creative-tim.com
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import MDBadge from "components/MDBadge";
 import { useLocation, useNavigate } from "react-router-dom";
 // Images
-import team2 from "assets/images/team-2.jpg";
 import { useEffect } from "react";
 
 import axios from "axios";
 
 export default function data() {
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -69,8 +66,8 @@ export default function data() {
     </MDBox>
   );
 
-  const handleEdit = () => {
-    navigate(location.pathname + "/" + 1);
+  const handleEdit = (order_number, path) => {
+    navigate(path + "/" + order_number);
   };
 
   const orders = [
@@ -127,88 +124,86 @@ export default function data() {
 
   fetchedRows.push(
     ...orders.map((item) => ({
-      order_number: <Provider image={team2} name="John Michael" email="john@creative-tim.com" />,
-      ref: <Job title="Manager" description="Organization" />,
+      order_number: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {item.order_number}
+        </MDTypography>
+      ),
+      ref: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {item.ref}
+        </MDTypography>
+      ),
       delivery_date: (
         <MDBox ml={-1}>
-          <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+          <MDTypography variant="caption" color="text" fontWeight="medium">
+            {item.delivery_date}
+          </MDTypography>
         </MDBox>
       ),
       country: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.country}
         </MDTypography>
       ),
       arreglo: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.arreglo}
         </MDTypography>
       ),
       invoice_name: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.invoice_name}
         </MDTypography>
       ),
       send_to: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.send_to}
         </MDTypography>
       ),
       status: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.status}
         </MDTypography>
       ),
       phone: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.phone}
         </MDTypography>
       ),
       languaje: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.languaje}
         </MDTypography>
       ),
       site: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.site}
         </MDTypography>
       ),
       total: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.total}
         </MDTypography>
       ),
       status_provider: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.status_provider}
         </MDTypography>
       ),
       provider_status: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
+          {item.provider_status}
         </MDTypography>
       ),
       provider_message: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          23/04/18
-        </MDTypography>
-      ),
-      action_invoice: (
-        <MDTypography
-          onClick={handleEdit}
-          component="a"
-          href="#"
-          variant="caption"
-          color="text"
-          fontWeight="2medium"
-        >
-          Edit
+          {item.provider_message}
         </MDTypography>
       ),
       action_client: (
         <MDTypography
-          onClick={handleEdit}
+          onClick={() => handleEdit(item.order_number, "/order_clients")}
           component="a"
           href="#"
           variant="caption"
@@ -220,7 +215,7 @@ export default function data() {
       ),
       action_provider: (
         <MDTypography
-          onClick={handleEdit}
+          onClick={() => handleEdit(item.order_number, "/order_providers")}
           component="a"
           href="#"
           variant="caption"

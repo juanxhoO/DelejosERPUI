@@ -38,7 +38,6 @@ import MDPagination from "components/MDPagination";
 // Material Dashboard 2 React example components
 import DataTableHeadCell from "examples/Tables/DataTable/DataTableHeadCell";
 import DataTableBodyCell from "examples/Tables/DataTable/DataTableBodyCell";
-import { CheckBox } from "@mui/icons-material";
 
 function DataTable({
   entriesPerPage,
@@ -215,9 +214,13 @@ function DataTable({
                       align={cell.column.align ? cell.column.align : "left"}
                       {...cell.getCellProps()}
                     >
-
-                      {cell.render('Cell')}
-
+                      {idx === 0 ? (
+                        <input
+                          type="checkbox"
+                        />
+                      ) : (
+                        cell.render('Cell')
+                      )}
                     </DataTableBodyCell>
                   </>
                 ))}

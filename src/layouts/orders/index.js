@@ -30,8 +30,6 @@ import ordersTableData from "layouts/tables/data/ordersTableData";
 function Orders() {
   const { columns, rows } = ordersTableData();
 
-  console.log(rows);
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -50,7 +48,7 @@ function Orders() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Clients Table
+                  Orders
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>

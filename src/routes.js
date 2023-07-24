@@ -35,9 +35,10 @@ Coded by www.creative-tim.com
   10. The `component` key is used to store the component of its route.
 */
 
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
+import Face6Icon from "@mui/icons-material/Face6";
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
@@ -52,8 +53,15 @@ import Provider from "layouts/providers/Provider";
 import Order from "layouts/orders/Order";
 import Client from "layouts/clients/Client";
 import Orders from "layouts/orders";
-import ClientOrder from "layouts/ClientOrder";
-import ProviderOrder from "layouts/ProviderOrder";
+import ChangePassword from "layouts/ChangePassword";
+import Comprobantes from "layouts/reports/Comprobantes";
+import GroupIcon from "@mui/icons-material/Group";
+import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import SellIcon from "@mui/icons-material/Sell";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+
+import ProviderOrder from "layouts/orders/ProviderOrder";
+import ClientOrder from "layouts/orders/ClientOrder";
 const routes = [
   {
     type: "collapse",
@@ -69,7 +77,7 @@ const routes = [
     name: "Providers",
     context: "private",
     key: "providers",
-    icon: <Icon fontSize="small">providers</Icon>,
+    icon: <GroupIcon fontSize="small">providers</GroupIcon>,
     route: "/providers",
     component: <Providers />,
   },
@@ -78,7 +86,7 @@ const routes = [
     name: "Clients",
     context: "private",
     key: "clients",
-    icon: <Icon fontSize="small">clients</Icon>,
+    icon: <Face6Icon fontSize="small">clients</Face6Icon>,
     route: "/clients",
     component: <Clients />,
   },
@@ -87,7 +95,7 @@ const routes = [
     name: "Orders",
     context: "private",
     key: "orders",
-    icon: <Icon fontSize="small">orders</Icon>,
+    icon: <SellIcon fontSize="small">orders</SellIcon>,
     route: "/orders",
     component: <Orders />,
   },
@@ -96,7 +104,7 @@ const routes = [
     name: "Reports",
     context: "private",
     key: "reports",
-    icon: <Icon fontSize="small">reports</Icon>,
+    icon: <ContentPasteIcon fontSize="small">ContentPasteIcon</ContentPasteIcon>,
     route: "/reports",
     component: <Reports />,
   },
@@ -105,7 +113,7 @@ const routes = [
     name: "Billing",
     context: "private",
     key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
+    icon: <PointOfSaleIcon fontSize="small">receipt_long</PointOfSaleIcon>,
     route: "/billing",
     component: <Billing />,
   },
@@ -160,8 +168,8 @@ const routes = [
   },
   {
     context: "private",
-    name: "Provider",
-    key: "provider",
+    name: "Clients",
+    key: "clients",
     route: "/clients/:id",
     component: <Client />,
   },
@@ -180,6 +188,22 @@ const routes = [
     key: "order_client",
     route: "/order_clients/:id",
     component: <ClientOrder />,
+  },
+  {
+    context: "private",
+    name: "Change Password",
+    key: "change_password",
+    route: "/admin/password",
+    component: <ChangePassword />,
+  },
+  {
+    context: "private",
+    type: "collapse",
+    icon: <ReceiptLongIcon fontSize="small">providers</ReceiptLongIcon>,
+    name: "Receipts",
+    key: "receipts",
+    route: "/receipts/",
+    component: <Comprobantes />,
   },
   // {
   //   type: "collapse",

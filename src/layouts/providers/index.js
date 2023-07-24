@@ -29,7 +29,6 @@ import providersTableData from "layouts/tables/data/providersTableData";
 
 function Providers() {
   const { columns, rows } = providersTableData();
-  console.log({ rows });
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -48,7 +47,7 @@ function Providers() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Clients Table
+                  Providers
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>

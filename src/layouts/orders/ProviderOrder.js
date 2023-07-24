@@ -7,6 +7,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import MDButton from "components/MDButton";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function ProviderOrder() {
   const params = useParams();
@@ -97,11 +98,13 @@ function ProviderOrder() {
   ];
   return (
     <DashboardLayout>
+      <DashboardNavbar />
       <Card>
-        <MDBox p={2}>
-          <Typography>Enviar a Proveedor la Orden # {params.id}</Typography>
-          <div className="labelProviderEmail">
-            <label>Provider List</label>
+        <MDBox p={3}>
+          <Typography fontWeight="bold" variant="h4" color="text">Enviar a Proveedor la Orden # {params.id}</Typography>
+
+          <MDBox className="labelProviderEmail">
+            <Typography variant="span" fontWeight="bold" color="text">Provider List:</Typography>
             <select>
               <option value="">Select a provider</option>
               {proveedores.map((option) => (
@@ -110,12 +113,17 @@ function ProviderOrder() {
                 </option>
               ))}
             </select>
+          </MDBox>
+
+
+          <div className="labelProviderEmail">
+            <Typography variant="span" fontWeight="bold" color="text">Cost:</Typography>
+
+
           </div>
           <div className="labelProviderEmail">
-            <label>Cost</label>
-          </div>
-          <div className="labelProviderEmail">
-            <label>Ocasion</label>
+            <Typography variant="span" fontWeight="bold" color="text">Ocasion:</Typography>
+
             <select>
               <option value="">Select a provider</option>
               {ocasiones.map((option) => (

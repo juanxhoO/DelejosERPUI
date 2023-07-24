@@ -26,10 +26,9 @@ function LogoutBtn() {
       sx={{ textDecoration: "none" }}
       onClick={handleLogout}
       component="a"
-      target="_blank"
       variant="gradient"
     >
-      <SidenavCollapse name="Logout" icon="Logout" />
+      <SidenavCollapse name="Logout" icon="LogoutIcon" />
     </Link>
   );
 }
