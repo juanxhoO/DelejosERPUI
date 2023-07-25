@@ -39,7 +39,7 @@ import MDPagination from "components/MDPagination";
 import DataTableHeadCell from "examples/Tables/DataTable/DataTableHeadCell";
 import DataTableBodyCell from "examples/Tables/DataTable/DataTableBodyCell";
 
-function DataTable({
+function CheckboxDataTable({
   entriesPerPage,
   canSearch,
   showTotalEntries,
@@ -47,6 +47,7 @@ function DataTable({
   pagination,
   isSorted,
   noEndBorder,
+  onRowClick
 }) {
   const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
   const entries = entriesPerPage.entries
@@ -96,6 +97,11 @@ function DataTable({
       {option + 1}
     </MDPagination>
   ));
+
+  const handleRowClick = (rowData) => {
+    // Call the onRowClick function from the parent component and pass the rowData
+    onRowClick(rowData);
+  };
 
   // Handler for the input to set the pagination index
   const handleInputPagination = ({ target: { value } }) =>
@@ -204,7 +210,7 @@ function DataTable({
           {page.map((row, key) => {
             prepareRow(row);
             return (
-              <TableRow onClick={() => console.log(row.original)} key={key} {...row.getRowProps()}>
+              <TableRow onClick={() => handleRowClick(row.original)} key={key} {...row.getRowProps()}>
 
                 {row.cells.map((cell, idx) => (
                   <>
@@ -278,7 +284,7 @@ function DataTable({
 }
 
 // Setting default values for the props of DataTable
-DataTable.defaultProps = {
+CheckboxDataTable.defaultProps = {
   entriesPerPage: { defaultValue: 10, entries: [5, 10, 15, 20, 25] },
   canSearch: false,
   showTotalEntries: true,
@@ -288,7 +294,7 @@ DataTable.defaultProps = {
 };
 
 // Typechecking props for the DataTable
-DataTable.propTypes = {
+CheckboxDataTable.propTypes = {
   entriesPerPage: PropTypes.oneOfType([
     PropTypes.shape({
       defaultValue: PropTypes.number,
@@ -314,6 +320,7 @@ DataTable.propTypes = {
   }),
   isSorted: PropTypes.bool,
   noEndBorder: PropTypes.bool,
+  onRowClick: PropTypes.func.isRequired,
 };
 
-export default DataTable;
+export default CheckboxDataTable;
