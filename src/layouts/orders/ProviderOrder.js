@@ -101,10 +101,14 @@ function ProviderOrder() {
       <DashboardNavbar />
       <Card>
         <MDBox p={3}>
-          <Typography fontWeight="bold" variant="h4" color="text">Enviar a Proveedor la Orden # {params.id}</Typography>
+          <Typography fontWeight="bold" variant="h4" color="text">
+            Enviar a Proveedor la Orden # {params.id}
+          </Typography>
 
           <MDBox className="labelProviderEmail">
-            <Typography variant="span" fontWeight="bold" color="text">Provider List:</Typography>
+            <Typography variant="span" fontWeight="bold" color="text">
+              Provider List:
+            </Typography>
             <select>
               <option value="">Select a provider</option>
               {proveedores.map((option) => (
@@ -115,14 +119,15 @@ function ProviderOrder() {
             </select>
           </MDBox>
 
-
           <div className="labelProviderEmail">
-            <Typography variant="span" fontWeight="bold" color="text">Cost:</Typography>
-
-
+            <Typography variant="span" fontWeight="bold" color="text">
+              Cost:
+            </Typography>
           </div>
           <div className="labelProviderEmail">
-            <Typography variant="span" fontWeight="bold" color="text">Ocasion:</Typography>
+            <Typography variant="span" fontWeight="bold" color="text">
+              Ocasion:
+            </Typography>
 
             <select>
               <option value="">Select a provider</option>

@@ -204,8 +204,7 @@ function DataTable({
           {page.map((row, key) => {
             prepareRow(row);
             return (
-              <TableRow onClick={() => console.log(row.original)} key={key} {...row.getRowProps()}>
-
+              <TableRow key={key} {...row.getRowProps()}>
                 {row.cells.map((cell, idx) => (
                   <>
                     <DataTableBodyCell
@@ -214,9 +213,7 @@ function DataTable({
                       align={cell.column.align ? cell.column.align : "left"}
                       {...cell.getCellProps()}
                     >
-
-                      {cell.render('Cell')}
-
+                      {cell.render("Cell")}
                     </DataTableBodyCell>
                   </>
                 ))}

@@ -47,7 +47,7 @@ function CheckboxDataTable({
   pagination,
   isSorted,
   noEndBorder,
-  onRowClick
+  onRowClick,
 }) {
   const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
   const entries = entriesPerPage.entries
@@ -210,8 +210,11 @@ function CheckboxDataTable({
           {page.map((row, key) => {
             prepareRow(row);
             return (
-              <TableRow onClick={() => handleRowClick(row.original)} key={key} {...row.getRowProps()}>
-
+              <TableRow
+                onClick={() => handleRowClick(row.original)}
+                key={key}
+                {...row.getRowProps()}
+              >
                 {row.cells.map((cell, idx) => (
                   <>
                     <DataTableBodyCell
@@ -220,13 +223,7 @@ function CheckboxDataTable({
                       align={cell.column.align ? cell.column.align : "left"}
                       {...cell.getCellProps()}
                     >
-                      {idx === 0 ? (
-                        <input
-                          type="checkbox"
-                        />
-                      ) : (
-                        cell.render('Cell')
-                      )}
+                      {idx === 0 ? <input type="checkbox" /> : cell.render("Cell")}
                     </DataTableBodyCell>
                   </>
                 ))}

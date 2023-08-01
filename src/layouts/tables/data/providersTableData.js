@@ -144,7 +144,7 @@ export default function data() {
   );
   return {
     columns: [
-      { Header: "Name", accessor: "name", width: "45%", align: "left" },
+      { Header: "Name", accessor: "name", align: "left" },
       { Header: "Lastname", accessor: "lastname", align: "left" },
       { Header: "Contact", accessor: "contact", align: "center" },
       { Header: "Email", accessor: "email", align: "center" },

@@ -22,6 +22,7 @@ import { AuthProvider } from "context/AuthProvider";
 // Material Dashboard 2 React Context Provider
 import { MaterialUIControllerProvider } from "context";
 import { Route, Routes } from "react-router-dom";
+import { DataProvider } from "context/DataProvider";
 
 const container = document.getElementById("app");
 const root = createRoot(container);
@@ -29,13 +30,15 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <MaterialUIControllerProvider>
-          <Routes>
-            <Route path="/*" element={<App />} />
-          </Routes>
-        </MaterialUIControllerProvider>
-      </BrowserRouter>
+      <DataProvider>
+        <BrowserRouter>
+          <MaterialUIControllerProvider>
+            <Routes>
+              <Route path="/*" element={<App />} />
+            </Routes>
+          </MaterialUIControllerProvider>
+        </BrowserRouter>
+      </DataProvider>
     </AuthProvider>
   </React.StrictMode>
 );

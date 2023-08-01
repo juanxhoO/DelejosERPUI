@@ -48,6 +48,7 @@ import brandDark from "assets/images/logo-ct-dark.png";
 
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DataProvider } from "context/DataProvider";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();

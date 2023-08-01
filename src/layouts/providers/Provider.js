@@ -14,7 +14,6 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Grid from "@mui/material/Grid";
 import { Card, TableBody, TableContainer, TableRow, Typography } from "@mui/material";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -111,7 +110,6 @@ function Provider() {
 
     // Call the handleProvider function passing the id parameter
     handleProvider(id);
-    console.log(id);
   }, []);
 
   const submitChanges = async () => {
@@ -157,7 +155,7 @@ function Provider() {
             </Table>
             <MDButton
               variant="gradient"
-              color="primary"
+              color="info"
               onClick={submitChanges}
               p={4}
               sx={{ margin: "20px", float: "right" }}

@@ -62,6 +62,8 @@ import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 
 import ProviderOrder from "layouts/orders/ProviderOrder";
 import ClientOrder from "layouts/orders/ClientOrder";
+import Users from "layouts/profile/Users";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 const routes = [
   {
     type: "collapse",
@@ -117,24 +119,33 @@ const routes = [
     route: "/billing",
     component: <Billing />,
   },
+  // {
+  //   type: "collapse",
+  //   context: "private",
+  //   name: "Notifications",
+  //   key: "notifications",
+  //   icon: <Icon fontSize="small">notifications</Icon>,
+  //   route: "/notifications",
+  //   component: <Notifications />,
+  // },
   {
     type: "collapse",
     context: "private",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
+    name: "Users",
+    key: "users",
+    icon: <PeopleAltIcon fontSize="small">notifications</PeopleAltIcon>,
+    route: "/users",
+    component: <Users />,
   },
-  {
-    type: "collapse",
-    name: "Profile",
-    context: "private",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Profile",
+  //   context: "private",
+  //   key: "profile",
+  //   icon: <Icon fontSize="small">person</Icon>,
+  //   route: "/profile",
+  //   component: <Profile />,
+  // },
   {
     type: "collapse",
     name: "Shops",

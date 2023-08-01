@@ -1,183 +1,294 @@
-
-
-import { Typography } from "@mui/material";
+import { Select, MenuItem, Typography, InputLabel } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDButton from "components/MDButton";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import CheckboxDataTable from "examples/Tables/CheckboxDataTable";
-import { useEffect, useState } from "react";
-function Comprobantes() {
+import { useContext,useEffect, useState } from "react";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { TextareaAutosize } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import DataContext from "context/DataProvider";
 
+
+function Comprobantes() {
   const [selectedRows, setSelectedRows] = useState([]);
+  const {sharedData, setSharedData} = useContext(DataContext);
 
   const handleRowClick = (rowData) => {
     const isRowSelected = selectedRows.some((row) => row.id === rowData.id);
     // If the row is already selected, remove it (deselect)
     if (isRowSelected) {
-      setSelectedRows((prevSelectedRows) => prevSelectedRows.filter((row) => row.id !== rowData.id));
+      setSelectedRows((prevSelectedRows) =>
+        prevSelectedRows.filter((row) => row.id !== rowData.id)
+      );
     } else {
       // If the row is not selected, add it (select)
       setSelectedRows((prevSelectedRows) => [...prevSelectedRows, rowData]);
     }
     console.log(selectedRows);
-  }
+  };
+
+  const countries = [
+    {
+      name: "Colombia",
+      code: "CO",
+    },
+    {
+      name: "United States",
+      code: "US",
+    },
+    {
+      name: "Canada",
+      code: "CA",
+    },
+    {
+      name: "United Kingdom",
+      code: "GB",
+    },
+    {
+      name: "Australia",
+      code: "AU",
+    },
+    {
+      name: "Germany",
+      code: "DE",
+    },
+  ];
 
   const columns = [
-    { Header: "checkbox", accessor: "checkbox" },
-    { Header: "name", accessor: "name", width: "25%" },
-    { Header: "position", accessor: "position" },
-    { Header: "office", accessor: "office" },
-    { Header: "age", accessor: "age", width: "12%" },
-    { Header: "salary", accessor: "salary", width: "12%" },
-    { Header: "date", accessor: "startDate", width: "12%" },
+    { Header: "Date", accessor: "date", width: "25%" },
+    { Header: "Order", accessor: "uuid" },
+    { Header: "Client", accessor: "client" },
+    { Header: "Value", accessor: "value", width: "12%" },
+    { Header: "Addressee", accessor: "addressee", width: "12%" },
+    { Header: "Product", accessor: "product", width: "12%" },
+    { Header: "Delivery Date", accessor: "delivery_date", width: "12%" },
   ];
 
   const rows = [
     {
-      name: "Hanny Baniard",
-      position: "Data Coordiator",
-      office: "Baorixile",
-      age: 42,
-      startDate: "4/11/2021",
-      salary: "$474,978",
+      date: "12/12/2021",
+      uuid: "0bcb741c-2b14-11ee-be56-0242ac120002",
+      client: "Juan Granja",
+      value: 125.23,
+      addressee: "Jhoana Barrionuevo",
+      product: "Vino espumoso, caja de chocolates y ramo de flores",
+      delivery_date: "12/12/2021",
     },
     {
-      name: "Lara Puleque",
-      position: "Payment Adjustment Coordinator",
-      office: "Cijangkar",
-      age: 47,
-      startDate: "8/2/2021",
-      salary: "$387,287",
+      date: "02/05/2022",
+      uuid: "1b9ff1aa-2b14-11ee-be56-0242ac120002",
+      client: "Maria Lopez",
+      value: 75.5,
+      addressee: "Carlos Ramirez",
+      product: "Gift basket and greeting card",
+      delivery_date: "02/06/2022",
     },
     {
-      name: "Torie Repper",
-      position: "Administrative Officer",
-      office: "Montpellier",
-      age: 25,
-      startDate: "4/21/2021",
-      salary: "$94,780",
+      date: "07/20/2022",
+      uuid: "3ac7f8c6-2b14-11ee-be56-0242ac120002",
+      client: "John Smith",
+      value: 99.99,
+      addressee: "Emma Johnson",
+      product: "Bouquet of roses",
+      delivery_date: "07/22/2022",
     },
     {
-      name: "Nat Gair",
-      position: "Help Desk Technician",
-      office: "Imider",
-      age: 57,
-      startDate: "12/6/2020",
-      salary: "$179,177",
+      date: "11/11/2022",
+      uuid: "4f064f9e-2b14-11ee-be56-0242ac120002",
+      client: "Robert Brown",
+      value: 45.75,
+      addressee: "Jennifer Davis",
+      product: "Chocolates and teddy bear",
+      delivery_date: "11/13/2022",
     },
     {
-      name: "Maggi Slowan",
-      position: "Help Desk Technician",
-      office: "Jaunpils",
-      age: 56,
-      startDate: "11/7/2020",
-      salary: "$440,874",
+      date: "04/30/2023",
+      uuid: "6974c7c4-2b14-11ee-be56-0242ac120002",
+      client: "Sarah Johnson",
+      value: 150.0,
+      addressee: "Michael Williams",
+      product: "Customized gift box",
+      delivery_date: "05/02/2023",
     },
     {
-      name: "Marleah Snipe",
-      position: "Account Representative II",
-      office: "Orekhovo-Borisovo Severnoye",
-      age: 31,
-      startDate: "7/18/2021",
-      salary: "$404,983",
-    },
-    {
-      name: "Georgia Danbury",
-      position: "Professor",
-      office: "Gniezno",
-      age: 50,
-      startDate: "10/1/2020",
-      salary: "$346,576",
-    },
-    {
-      name: "Bev Castan",
-      position: "Design Engineer",
-      office: "Acharnés",
-      age: 19,
-      startDate: "1/14/2021",
-      salary: "$445,171",
-    },
-    {
-      name: "Reggi Westney",
-      position: "Financial Advisor",
-      office: "Piuí",
-      age: 56,
-      startDate: "3/21/2021",
-      salary: "$441,569",
-    },
-    {
-      name: "Bartholomeus Prosh",
-      position: "Project Manager",
-      office: "Kelīshād va Sūdarjān",
-      age: 28,
-      startDate: "5/27/2021",
-      salary: "$336,238",
-    },
-    {
-      name: "Sheffy Feehely",
-      position: "Software Consultant",
-      office: "Ndibène Dahra",
-      age: 27,
-      startDate: "3/23/2021",
-      salary: "$473,391",
-    },
-    {
-      name: "Euphemia Chastelain",
-      position: "Engineer IV",
-      office: "Little Baguio",
-      age: 63,
-      startDate: "5/1/2021",
-      salary: "$339,489",
+      date: "09/15/2023",
+      uuid: "7db3e43e-2b14-11ee-be56-0242ac120002",
+      client: "Laura Martinez",
+      value: 68.9,
+      addressee: "David Thompson",
+      product: "Assorted sweets and balloons",
+      delivery_date: "09/17/2023",
     },
   ];
+
+  const providers = [
+    {
+      id: "12332",
+      name: "Proveedor Flores De Mar",
+    },
+    {
+      id: "98765",
+      name: "Supplier Green Gardens",
+    },
+    {
+      id: "45678",
+      name: "Eco-Friendly Suppliers",
+    },
+    {
+      id: "56789",
+      name: "Blooming Blossoms Co.",
+    },
+    // Add more provider objects as needed
+  ];
+
+  const [startDate, setStartDate] = useState(dayjs("2022-04-17T15:30"));
+  const [endDate, setEndDate] = useState(dayjs("2022-04-17T15:30"));
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedProvider, setSelectedProvider] = useState("");
+  const [age, setAge] = useState("");
+
+  const handleChange = (event) => {
+    setSharedData({id:7});
+    console.log(sharedData);
+  };
   return (
-
     <DashboardLayout>
-
-      <Typography variant="h2">
-        Comprobantes
-      </Typography>
-
-      <CheckboxDataTable
-        table={{
-          columns,
-          rows
-        }}
-        onRowClick={handleRowClick} />
-
       <MDBox mt={5}>
-        <MDBox>
-          <Typography>
-            Total:
-          </Typography>
+        <Typography variant="h2">Comprobantes</Typography>
+        <MDBox display="inline-block" width="50%" mt={3}>
+          <Typography fontWeight="bold">Status:</Typography>
+
+          <InputLabel id="status-select-label">Status</InputLabel>
+          <Select labelId="status-select-label" label="Status" value="" onChange={2}>
+            <MenuItem value="none">
+              <em>Without Receipt</em>
+            </MenuItem>
+            <MenuItem value="pending">
+              <em>Pending</em>
+            </MenuItem>
+            <MenuItem value="paid">
+              <em>Paid</em>
+            </MenuItem>
+            <MenuItem value="aborted">
+              <em>Aborted</em>
+            </MenuItem>
+          </Select>
         </MDBox>
 
-        <MDBox>
-          <Typography>
-            Gastos Financieros:
-          </Typography>
+        <MDBox display="inline-block" width="50%" mt={3}>
+          <Typography fontWeight="bold">Country:</Typography>
+
+          <InputLabel id="country-select-label">Country</InputLabel>
+          <Select
+            labelId="country-select-label"
+            value="Ecuador"
+            onChange={(val) => setSelectedCountry(val.target.value)}
+            label="Country"
+          >
+            {countries.map((country) => (
+              <MenuItem key={country.code} value={country.name}>
+                {country.name}
+              </MenuItem>
+            ))}
+          </Select>
         </MDBox>
 
-        <MDBox>
-          <Typography>
-            ISD
-          </Typography>
+        <MDBox display="inline-block" width="50%" mt={3}>
+          <Typography fontWeight="bold">Provider:</Typography>
+
+          <InputLabel id="country-select-label">Provider</InputLabel>
+          <Select
+            labelId="country-select-label"
+            value={selectedCountry}
+            onChange={(val) => setSelectedCountry(val.target.value)}
+            label="Country"
+          >
+            {providers.map((provider) => (
+              <MenuItem key={provider.id} value={provider.name}>
+                {provider.name}
+              </MenuItem>
+            ))}
+          </Select>
         </MDBox>
 
-        <MDBox>
-          <Typography>
-            Observaciones
-          </Typography>
-        </MDBox>
-        <Typography>
+        <MDBox display="inline-block" width="50%" mt={3}>
+          <Typography fontWeight="bold">Receipts:</Typography>
 
-        </Typography>
-        <MDButton variant="gradient" color="info" >
-          Generar Comprobante
+          <InputLabel id="receipts-select-label">Receipts</InputLabel>
+          <Select value={2} onChange={2} label="Receipts" labelId="receipts-select-label">
+            <MenuItem value="yes">
+              <em>Yes</em>
+            </MenuItem>
+            <MenuItem value="no">
+              <em>No</em>
+            </MenuItem>
+          </Select>
+        </MDBox>
+
+        <MDBox mt={3}>
+          <DatePicker
+            views={["year", "month"]}
+            label="Start Date"
+            value={startDate}
+            onChange={(newValue) => setStartDate(newValue)}
+          />
+        </MDBox>
+        <MDBox mt={3}>
+          <DatePicker
+            views={["year", "month"]}
+            label="End Date"
+            value={endDate}
+            onChange={(newValue) => setEndDate(newValue)}
+          />
+        </MDBox>
+
+        <MDButton onClick= {handleChange} variant="gradient" color="info" sx={{ marginTop: "20px" }}>
+          Show
         </MDButton>
+
+        <MDBox mt={5}>
+          <CheckboxDataTable
+            table={{
+              columns,
+              rows,
+            }}
+            onRowClick={handleRowClick}
+          />
+        </MDBox>
+
+        <Paper elevation={3} sx={{ p: 2, mt: 5 }}>
+          <MDBox mt={3}>
+            <Typography fontWeight="bold">Total:</Typography>
+          </MDBox>
+
+          <MDBox mt={3}>
+            <Typography fontWeight="bold">Gastos Financieros:</Typography>
+          </MDBox>
+
+          <MDBox mt={3}>
+            <Typography fontWeight="bold">ISD:</Typography>
+          </MDBox>
+
+          <MDBox mt={3}>
+            <Typography fontWeight="bold">Observaciones:</Typography>
+
+            <TextareaAutosize
+              xs={{ borderRadius: "5px" }}
+              minRows={3}
+              maxRows={5}
+              style={{ width: "320px" }}
+            />
+          </MDBox>
+
+          <MDButton xs={{ marginTop: "20px", padding: "10px" }} variant="gradient" color="info">
+            Generar Comprobante
+          </MDButton>
+        </Paper>
       </MDBox>
     </DashboardLayout>
-  )
+  );
 }
 
 export default Comprobantes;
