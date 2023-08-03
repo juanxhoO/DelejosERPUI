@@ -17,7 +17,6 @@ Coded by www.creative-tim.com
 import { Card, TableBody, TableContainer, TableRow, Typography } from "@mui/material";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -28,6 +27,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import MDButton from "components/MDButton";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 function Provider() {
   const { id } = useParams();
@@ -77,7 +77,7 @@ function Provider() {
     {
       label: "Observations",
       id: "observations",
-      type: "text",
+      type: "textarea",
     },
   ];
 
@@ -137,17 +137,30 @@ function Provider() {
                       <Typography sx={{ fontWeight: "bold" }}>{row.label}:</Typography>
                     </TableCell>
                     <TableCell>
-                      <MDInput
-                        variant="outlined"
-                        label={row.label}
-                        value={inputValues[row.id] || ""}
-                        onChange={(e) => {
-                          setInputValues((prevValues) => ({
-                            ...prevValues,
-                            [row.id]: e.target.value,
-                          }));
-                        }}
-                      />
+                      {row.type === 'textarea' ? (
+                        <TextareaAutosize
+                          minRows={7}
+                          value={inputValues[row.id] || ""}
+                          onChange={(e) => {
+                            setInputValues((prevValues) => ({
+                              ...prevValues,
+                              [row.id]: e.target.value,
+                            }));
+                          }}
+                        />
+                      ) : (
+                        <MDInput
+                          variant="outlined"
+                          label={row.label}
+                          value={inputValues[row.id] || ""}
+                          onChange={(e) => {
+                            setInputValues((prevValues) => ({
+                              ...prevValues,
+                              [row.id]: e.target.value,
+                            }));
+                          }}
+                        />
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
