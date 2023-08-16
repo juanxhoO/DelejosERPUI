@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
-import { Card } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -26,6 +26,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Data
 import ordersTableData from "layouts/tables/data/ordersTableData";
+import MDButton from "components/MDButton";
 
 function Orders() {
   const { columns, rows } = ordersTableData();
@@ -61,7 +62,13 @@ function Orders() {
                 />
               </MDBox>
             </Card>
+
+          <MDButton variant="gradient" color="info" size="small" onClick={() => window.location.href = "/create-order"}>
+            Create New Order
+          </MDButton>
           </Grid>
+
+
         </Grid>
       </MDBox>
     </DashboardLayout>

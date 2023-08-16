@@ -59,7 +59,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import SellIcon from "@mui/icons-material/Sell";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
-
+import CreateProvider from "layouts/providers/CreateProvider";
 import ProviderOrder from "layouts/orders/ProviderOrder";
 import ClientOrder from "layouts/orders/ClientOrder";
 import Users from "layouts/profile/Users";
@@ -200,6 +200,14 @@ const routes = [
     route: "/order_clients/:id",
     component: <ClientOrder />,
   },
+
+  {
+    context: "private",
+    name: "Create Provider",
+    key: "receipts",
+    route: "/providers/create",
+    component: <CreateProvider />,
+  },
   {
     context: "private",
     name: "Change Password",
@@ -216,6 +224,7 @@ const routes = [
     route: "/receipts/",
     component: <Comprobantes />,
   },
+
   // {
   //   type: "collapse",
   //   context: "public",

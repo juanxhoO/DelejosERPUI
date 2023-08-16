@@ -26,6 +26,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Data
 import providersTableData from "layouts/tables/data/providersTableData";
+import MDButton from "components/MDButton";
 
 function Providers() {
   const { columns, rows } = providersTableData();
@@ -54,6 +55,14 @@ function Providers() {
                 <DataTable table={{ columns, rows }} />
               </MDBox>
             </Card>
+
+
+            <MDBox mt={3}>
+              <MDButton variant="gradient" color="info" href="/providers/create">
+                <i className="fas fa-plus"></i>
+                Create Provider
+              </MDButton>
+            </MDBox>
           </Grid>
         </Grid>
       </MDBox>
