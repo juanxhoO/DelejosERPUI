@@ -18,66 +18,35 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React components
 import MDTypography from "components/MDTypography";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import axios from 'axios';
+
 // Images
 
 export default function data() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [providers, setProviders] = useState([]);
 
   const handleEdit = (id) => {
     navigate(location.pathname + "/" + id);
   };
 
-  const providers = [
-    {
-      id: "cfc81b06-fd5a-4af3-b08f-cfd5489b7a26",
-      name: "John",
-      lastname: "Wick",
-      contact: "281929102",
-      email: "jhonw@gmail.com",
-      address: "washington avenue 232",
-      country: "USA",
-      city: "California",
-      phone1: "232143232",
-      phone2: "382919283",
-    },
-    {
-      id: "f1a1e9b9-7e2d-4e4b-9154-2b91e038d185",
-      name: "Alice",
-      lastname: "Johnson",
-      contact: "392849283",
-      email: "alicej@example.com",
-      address: "Elm Street 123",
-      country: "Canada",
-      city: "Toronto",
-      phone1: "293847293",
-      phone2: "819283910",
-    },
-    {
-      id: "8e11d97e-7a46-43ab-b5f0-82a6143e0a0c",
-      name: "Michael",
-      lastname: "Smith",
-      contact: "483729183",
-      email: "michaels@example.com",
-      address: "Broadway 456",
-      country: "United Kingdom",
-      city: "London",
-      phone1: "736281927",
-      phone2: "392819283",
-    },
-    {
-      id: "4b8bf623-c90e-4530-a36d-27167bb42103",
-      name: "Emily",
-      lastname: "Davis",
-      contact: "981726392",
-      email: "emilyd@example.com",
-      address: "Boulevard 789",
-      country: "France",
-      city: "Paris",
-      phone1: "648172938",
-      phone2: "192837465",
-    },
-  ];
+  useEffect(() => {
+
+    async function fetchProviders() {
+      try{
+        const response = await axios.get('http://localhost:3000/v1/users?role=USER');
+        setProviders(response.data);
+        console.log(response.data);
+      }
+      catch(error){
+        console.log(error)
+      }
+    }
+    fetchProviders();
+  }, [])
+
 
   const fetchedRows = [];
 
@@ -108,11 +77,11 @@ export default function data() {
           {provider.address}
         </MDTypography>
       ),
-      country: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.country}
-        </MDTypography>
-      ),
+      // country: (
+      //   <MDTypography variant="caption" color="text" fontWeight="medium">
+      //     {provider.country}
+      //   </MDTypography>
+      // ),
       city: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
           {provider.city}

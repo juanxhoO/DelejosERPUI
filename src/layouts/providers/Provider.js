@@ -31,8 +31,11 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 function Provider() {
   const { id } = useParams();
-  const [inputValues, setInputValues] = useState({});
+  const [provider,setProvider] = useState([]);
 
+
+
+  //Layout to show Inputs 
   const rows = [
     {
       label: "Name",
@@ -55,8 +58,13 @@ function Provider() {
       type: "text",
     },
     {
-      label: "Phone Number",
-      id: "phone",
+      label: "Phone Number 1",
+      id: "phone1",
+      type: "text",
+    },
+    {
+      label: "Phone Number 2",
+      id: "phone2",
       type: "text",
     },
     {
@@ -81,45 +89,30 @@ function Provider() {
     },
   ];
 
-  const person1 = {
-    name: "Juan",
-    lastname: "Granja",
-    country: "Mexico",
-    city: "Guadalajara",
-    email: "ggjuanb@hotmail.com",
-  };
-
   useEffect(() => {
-    //Fetching Data from ERP API BACKEND
+    //Fetching Provider Data from ERP API BACKEND
     const handleProvider = async (param_id) => {
       try {
-        //const response = await axios.get(axios);
-        const data = {
-          name: "Juan",
-          lastname: "Granja",
-          country: "Mexico",
-          city: "Guadalajara",
-          email: "ggjuanb@hotmail.com",
-        };
-        // Update input values with the retrieved data
-        setInputValues(data); // Assuming the response data is in the same structure as person1 object
+        const response = await axios.get("http://localhost:3000/v1/users/" + param_id);
+        setProvider(response.data);
       } catch (error) {
         console.log(error);
       }
     };
-
     // Call the handleProvider function passing the id parameter
     handleProvider(id);
   }, []);
 
   const submitChanges = async () => {
-    console.log("changes submitted");
-    console.log(inputValues);
-    // try {
-    //   const response = await axios.put("/api", inputValues, { withCredentials: true });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      console.log(provider);
+      //const response = await axios.patch("http://localhost:3000/v1/users/" + id, provider);
+      //console.log(response);
+
+      setProvider(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -140,9 +133,9 @@ function Provider() {
                       {row.type === 'textarea' ? (
                         <TextareaAutosize
                           minRows={7}
-                          value={inputValues[row.id] || ""}
+                          value={provider[row.id] || ""}
                           onChange={(e) => {
-                            setInputValues((prevValues) => ({
+                            setProvider((prevValues) => ({
                               ...prevValues,
                               [row.id]: e.target.value,
                             }));
@@ -152,9 +145,9 @@ function Provider() {
                         <MDInput
                           variant="outlined"
                           label={row.label}
-                          value={inputValues[row.id] || ""}
+                          value={provider[row.id] || ""}
                           onChange={(e) => {
-                            setInputValues((prevValues) => ({
+                            setProvider((prevValues) => ({
                               ...prevValues,
                               [row.id]: e.target.value,
                             }));
