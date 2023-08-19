@@ -3,17 +3,16 @@ import MDBox from "components/MDBox";
 import MDButton from "components/MDButton";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import CheckboxDataTable from "examples/Tables/CheckboxDataTable";
-import { useContext,useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { TextareaAutosize } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import DataContext from "context/DataProvider";
 
-
 function Comprobantes() {
   const [selectedRows, setSelectedRows] = useState([]);
-  const {sharedData, setSharedData} = useContext(DataContext);
+  const { sharedData, setSharedData } = useContext(DataContext);
 
   const handleRowClick = (rowData) => {
     const isRowSelected = selectedRows.some((row) => row.id === rowData.id);
@@ -150,7 +149,7 @@ function Comprobantes() {
   const [age, setAge] = useState("");
 
   const handleChange = (event) => {
-    setSharedData({id:7});
+    setSharedData({ id: 7 });
     console.log(sharedData);
   };
   return (
@@ -244,7 +243,7 @@ function Comprobantes() {
           />
         </MDBox>
 
-        <MDButton onClick= {handleChange} variant="gradient" color="info" sx={{ marginTop: "20px" }}>
+        <MDButton onClick={handleChange} variant="gradient" color="info" sx={{ marginTop: "20px" }}>
           Show
         </MDButton>
 

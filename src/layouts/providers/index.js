@@ -56,7 +56,6 @@ function Providers() {
               </MDBox>
             </Card>
 
-
             <MDBox mt={3}>
               <MDButton variant="gradient" color="info" href="/providers/create">
                 <i className="fas fa-plus"></i>

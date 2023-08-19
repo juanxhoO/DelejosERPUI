@@ -9,7 +9,6 @@ import MDButton from "components/MDButton";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import MenuItem from "@mui/material/MenuItem";
 import Paper from "@mui/material/Paper";
-import InvertedTable from "examples/Tables/DataTable/InvertedTable";
 
 function Reportes() {
   const [endDate, setEndDate] = useState(dayjs("2022-04-17T15:30"));
@@ -213,9 +212,6 @@ function Reportes() {
         </MDButton>
       </MDBox>
 
-      <Paper>
-        <InvertedTable table={{ columns, rows }} />
-      </Paper>
     </DashboardLayout>
   );
 }

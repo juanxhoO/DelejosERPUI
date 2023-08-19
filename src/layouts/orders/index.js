@@ -63,12 +63,15 @@ function Orders() {
               </MDBox>
             </Card>
 
-          <MDButton variant="gradient" color="info" size="small" onClick={() => window.location.href = "/create-order"}>
-            Create New Order
-          </MDButton>
+            <MDButton
+              variant="gradient"
+              color="info"
+              size="small"
+              onClick={() => (window.location.href = "/create-order")}
+            >
+              Create New Order
+            </MDButton>
           </Grid>
-
-
         </Grid>
       </MDBox>
     </DashboardLayout>

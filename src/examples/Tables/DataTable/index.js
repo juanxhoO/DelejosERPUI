@@ -54,6 +54,7 @@ function DataTable({
     : ["5", "10", "15", "20", "25"];
   const columns = useMemo(() => table.columns, [table]);
   const data = useMemo(() => table.rows, [table]);
+
   const tableInstance = useTable(
     { columns, data, initialState: { pageIndex: 0 } },
     useGlobalFilter,
@@ -206,16 +207,14 @@ function DataTable({
             return (
               <TableRow key={key} {...row.getRowProps()}>
                 {row.cells.map((cell, idx) => (
-                  <>
-                    <DataTableBodyCell
-                      key={idx}
-                      noBorder={noEndBorder && rows.length - 1 === key}
-                      align={cell.column.align ? cell.column.align : "left"}
-                      {...cell.getCellProps()}
-                    >
-                      {cell.render("Cell")}
-                    </DataTableBodyCell>
-                  </>
+                  <DataTableBodyCell
+                    key={idx}
+                    noBorder={noEndBorder && rows.length - 1 === key}
+                    align={cell.column.align ? cell.column.align : "left"}
+                    {...cell.getCellProps()}
+                  >
+                    {cell.render("Cell")}
+                  </DataTableBodyCell>
                 ))}
               </TableRow>
             );

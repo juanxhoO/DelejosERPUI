@@ -18,8 +18,8 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React components
 import MDTypography from "components/MDTypography";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react'
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 // Images
 
@@ -33,20 +33,17 @@ export default function data() {
   };
 
   useEffect(() => {
-
     async function fetchProviders() {
-      try{
-        const response = await axios.get('http://localhost:3000/v1/users?role=USER');
+      try {
+        const response = await axios.get("http://localhost:3000/v1/users?role=USER");
         setProviders(response.data);
         console.log(response.data);
-      }
-      catch(error){
-        console.log(error)
+      } catch (error) {
+        console.log(error);
       }
     }
     fetchProviders();
-  }, [])
-
+  }, []);
 
   const fetchedRows = [];
 

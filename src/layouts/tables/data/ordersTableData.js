@@ -18,108 +18,52 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // Images
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "config/axios";
 
-import axios from "axios";
 
 export default function data() {
   const navigate = useNavigate();
-
+  const [orders,setOrders] = useState([]);
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = axios.get();
-        console.log(response);
 
-        if (response.status === 200) {
-          console.log("success");
-          const data = response.data;
-          console.log(data);
-        }
+    //Getting all Orders  
+    const FetchOrders = async () => {
+      try {
+        const response = await axios.get("/v1/orders");
+        setOrders(response.data);
       } catch (error) {
         console.log("error");
       }
     };
+    FetchOrders();
   }, []);
-
-  const Provider = ({ image, name, email }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
-      <MDBox ml={2} lineHeight={1}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
-          {name}
-        </MDTypography>
-        <MDTypography variant="caption">{email}</MDTypography>
-      </MDBox>
-    </MDBox>
-  );
-
-  const Job = ({ title, description }) => (
-    <MDBox lineHeight={1} textAlign="left">
-      <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-        {title}
-      </MDTypography>
-      <MDTypography variant="caption">{description}</MDTypography>
-    </MDBox>
-  );
 
   const handleEdit = (order_number, path) => {
     navigate(path + "/" + order_number);
   };
 
-  const orders = [
-    {
-      order_number: "12331",
-      ref: "323233",
-      delivery_date: "12/12/2021",
-      country: "Mexico",
-      arreglo: "No",
-      invoice_name: "Juan Perez",
-      send_to: "Juan Perez",
-      status: "Pending",
-      phone: "555555555",
-      languaje: "English",
-      site: "www.delejos.com.en",
-      total: "$100",
-      provider_status: "Pending",
-      provider_message: "Pending",
-    },
-    {
-      order_number: "11223",
-      ref: "445566",
-      delivery_date: "05/20/2022",
-      country: "Canada",
-      arreglo: "Yes",
-      invoice_name: "Emily Brown",
-      send_to: "David Lee",
-      status: "Processing",
-      phone: "666666666",
-      languaje: "French",
-      site: "www.shopnow.ca",
-      total: "$150",
-      provider_status: "Completed",
-      provider_message: "Shipped via express delivery",
-    },
-    {
-      order_number: "54321",
-      ref: "987654",
-      delivery_date: "01/01/2022",
-      country: "United States",
-      arreglo: "Yes",
-      invoice_name: "John Smith",
-      send_to: "Alice Johnson",
-      status: "Completed",
-      phone: "444444444",
-      languaje: "Spanish",
-      site: "www.example.com",
-      total: "$75",
-      provider_status: "Processing",
-      provider_message: "Items out of stock",
-    },
-  ];
+  // const orders = [
+  //   {
+  //     order_number: "12331",
+  //     ref: "323233",
+  //     delivery_date: "12/12/2021",
+  //     country: "Mexico",
+  //     arreglo: "No",
+  //     invoice_name: "Juan Perez",
+  //     send_to: "Juan Perez",
+  //     status: "Pending",
+  //     phone: "555555555",
+  //     languaje: "English",
+  //     site: "www.delejos.com.en",
+  //     total: "$100",
+  //     provider_status: "Pending",
+  //     provider_message: "Pending",
+  //   },
+  // ];
+
   const fetchedRows = [];
 
   fetchedRows.push(

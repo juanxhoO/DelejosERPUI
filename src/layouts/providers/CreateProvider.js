@@ -29,7 +29,7 @@ import MDButton from "components/MDButton";
 import Grid from "@mui/material/Grid";
 import DataTable from "examples/Tables/DataTable";
 import Select from "@mui/material/Select";
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import TextareaAutosize from "@mui/base/TextareaAutosize";
 import MDTypography from "components/MDTypography";
 import providersTableData from "layouts/tables/data/providersTableData";
 
@@ -99,10 +99,8 @@ function CreateProvider() {
     async function fetchCountries() {
       try {
         const response = await axios.get("http://localhost:3000/v1/countries");
-        setCountries(response.data)
-       
-      }
-      catch (error) {
+        setCountries(response.data);
+      } catch (error) {
         console.log(error);
       }
     }
@@ -113,11 +111,12 @@ function CreateProvider() {
   const submitChanges = async () => {
     console.log(inputValues);
     try {
-      const response = await axios.post("http://localhost:3000/v1/auth/register", inputValues, { withCredentials: false });
+      const response = await axios.post("http://localhost:3000/v1/auth/register", inputValues, {
+        withCredentials: false,
+      });
       console.log(response.data);
       navigate("/providers");
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -138,12 +137,12 @@ function CreateProvider() {
                     <TableCell>
                       {(() => {
                         switch (row.type) {
-                          case 'textarea':
+                          case "textarea":
                             return (
                               <TextareaAutosize
                                 minRows={7}
                                 required
-                                value={inputValues[row.id] || ''}
+                                value={inputValues[row.id] || ""}
                                 onChange={(e) => {
                                   setInputValues((prevValues) => ({
                                     ...prevValues,
@@ -152,10 +151,10 @@ function CreateProvider() {
                                 }}
                               />
                             );
-                          case 'select':
+                          case "select":
                             return (
                               <Select
-                                value={inputValues[row.id] || ''}
+                                value={inputValues[row.id] || ""}
                                 onChange={(e) => {
                                   setInputValues((prevValues) => ({
                                     ...prevValues,
@@ -164,17 +163,19 @@ function CreateProvider() {
                                 }}
                               >
                                 {countries.map((country) => (
-                                  <MenuItem key={country.id} value={country.name}>{country.name}</MenuItem>
+                                  <MenuItem key={country.id} value={country.name}>
+                                    {country.name}
+                                  </MenuItem>
                                 ))}
                               </Select>
                             );
                           default:
                             return (
                               <MDInput
-                              required
+                                required
                                 variant="outlined"
                                 label={row.label}
-                                value={inputValues[row.id] || ''}
+                                value={inputValues[row.id] || ""}
                                 onChange={(e) => {
                                   setInputValues((prevValues) => ({
                                     ...prevValues,
@@ -186,7 +187,6 @@ function CreateProvider() {
                         }
                       })()}
                     </TableCell>
-
                   </TableRow>
                 ))}
               </TableBody>

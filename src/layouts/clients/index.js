@@ -26,6 +26,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Data
 import clientsTableData from "layouts/tables/data/clientsTableData";
+import MDButton from "components/MDButton";
 
 function Clients() {
   const { columns, rows } = clientsTableData();
@@ -60,7 +61,14 @@ function Clients() {
                 />
               </MDBox>
             </Card>
+
+            <MDBox mt={3}>
+              <MDButton variant="gradient" color="info" mt={3}>
+                dsds
+              </MDButton>
+            </MDBox>
           </Grid>
+
         </Grid>
       </MDBox>
     </DashboardLayout>

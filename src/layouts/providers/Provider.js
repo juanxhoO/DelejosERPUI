@@ -27,15 +27,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import MDButton from "components/MDButton";
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import TextareaAutosize from "@mui/base/TextareaAutosize";
 
 function Provider() {
   const { id } = useParams();
-  const [provider,setProvider] = useState([]);
+  const [provider, setProvider] = useState([]);
 
-
-
-  //Layout to show Inputs 
+  //Layout to show Inputs
   const rows = [
     {
       label: "Name",
@@ -130,7 +128,7 @@ function Provider() {
                       <Typography sx={{ fontWeight: "bold" }}>{row.label}:</Typography>
                     </TableCell>
                     <TableCell>
-                      {row.type === 'textarea' ? (
+                      {row.type === "textarea" ? (
                         <TextareaAutosize
                           minRows={7}
                           value={provider[row.id] || ""}
