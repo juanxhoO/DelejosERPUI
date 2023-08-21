@@ -46,6 +46,8 @@ function Basic() {
 
   const [email, SetEmail] = useState('');
   const [pwd, SetPwd] = useState('');
+  const [error, setError] = useState('');
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -58,6 +60,7 @@ function Basic() {
     }
     catch (error) {
       console.log(error);
+      setError(error.response.data.message);      
     }
   };
   return (
@@ -88,6 +91,7 @@ function Basic() {
                 type="email"
                 label="Email"
                 fullWidth
+                required
               />
             </MDBox>
             <MDBox mb={2}>
@@ -118,6 +122,7 @@ function Basic() {
                 sign in
               </MDButton>
             </MDBox>
+            <p>{error ? error : null}</p>
           </MDBox>
         </MDBox>
       </Card>
