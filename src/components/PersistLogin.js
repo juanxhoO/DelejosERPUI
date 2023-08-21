@@ -9,6 +9,7 @@ const PersistLogin = () => {
     const { auth } = useAuth();
 
     useEffect(() => {
+        let isMounted = true;
 
         const verifyRefreshToken = async () => {
             try {
@@ -18,12 +19,13 @@ const PersistLogin = () => {
                 console.error(err);
             }
             finally {
-                setIsLoading(false);
+                isMounted && setIsLoading(false);
             }
         }
-        // persist added here AFTER tutorial video
         // Avoids unwanted call to verifyRefreshToken
         !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
+
+        return () => isMounted = false;
     }, [])
 
     useEffect(() => {
@@ -33,9 +35,10 @@ const PersistLogin = () => {
 
     return (
         <>
-            {isLoading
-                ? <p>Loading...</p>
-                : <Outlet />
+            {
+                isLoading
+                    ? <p>Loading...</p>
+                    : <Outlet />
             }
         </>
     )

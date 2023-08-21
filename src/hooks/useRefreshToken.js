@@ -5,19 +5,19 @@ const useRefreshToken = () => {
     const { setAuth } = useAuth();
 
     const refresh = async () => {
-        const response = await axios.get('http://localhost:3000/v1/auth/refresh-tokens', {
-            withCredentials: true
+        const response = await axios.post('http://localhost:3000/v1/auth/refresh-tokens',{}, {
+            withCredentials: true,
+            headers: { 'Content-Type': 'application/json' },
         });
         setAuth(prev => {
             console.log(JSON.stringify(prev));
-            console.log(response.data.accessToken);
+            console.log(response.data);
             return {
                 ...prev,
-                // roles: response.data.roles,
-                accessToken: response.data.accessToken
+                accessToken: response.data.access.token
             }
         });
-        return response.data.accessToken;
+        return response.data.access.token;
     }
     return refresh;
 };

@@ -52,9 +52,8 @@ function Basic() {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/v1/auth/login", { "email": email, "password": pwd }, { withCredentials: true });
-      console.log(response.data.tokens.access);
       const accessToken = response.data.tokens.access.token;
-      setAuth({accessToken : accessToken});
+      setAuth({accessToken});
       navigate('/');
     }
     catch (error) {

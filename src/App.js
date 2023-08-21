@@ -48,7 +48,7 @@ import brandDark from "assets/images/logo-ct-dark.png";
 
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DataProvider } from "context/DataProvider";
+import PersistLogin from "components/PersistLogin";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -170,9 +170,12 @@ export default function App() {
         )}
         {layout === "vr" && <Configurator />}
         <Routes>
-          <Route element={<RequireAuth />}>
-            {getRoutesPrivate(routes)}
-            <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth />}>
+              {getRoutesPrivate(routes)}
+              <Route path="*" element={<Navigate to="/dashboard" />} />
+            </Route>
+
           </Route>
           <Route>{getRoutes(routes)}</Route>
         </Routes>
