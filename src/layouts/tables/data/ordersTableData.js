@@ -23,17 +23,16 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "config/axios";
 
-
 export default function data() {
   const navigate = useNavigate();
-  const [orders,setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
   useEffect(() => {
-
-    //Getting all Orders  
+    //Getting all Orders
     const FetchOrders = async () => {
       try {
         const response = await axios.get("/v1/orders");
         setOrders(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log("error");
       }
@@ -41,8 +40,8 @@ export default function data() {
     FetchOrders();
   }, []);
 
-  const handleEdit = (order_number, path) => {
-    navigate(path + "/" + order_number);
+  const handleEdit = (order_number) => {
+    navigate("/orders/" + order_number + "/client-chat");
   };
 
   // const orders = [
@@ -60,7 +59,7 @@ export default function data() {
   //     site: "www.delejos.com.en",
   //     total: "$100",
   //     provider_status: "Pending",
-  //     provider_message: "Pending",
+  //     provider_message: "Pending",id
   //   },
   // ];
 
@@ -70,7 +69,7 @@ export default function data() {
     ...orders.map((item) => ({
       order_number: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {item.order_number}
+          {item.id}
         </MDTypography>
       ),
       ref: (
@@ -147,7 +146,7 @@ export default function data() {
       ),
       action_client: (
         <MDTypography
-          onClick={() => handleEdit(item.order_number, "/order_clients")}
+          onClick={() => navigate("/orders/" + item.id + "/client-chat/")}
           component="a"
           href="#"
           variant="caption"
@@ -159,7 +158,7 @@ export default function data() {
       ),
       action_provider: (
         <MDTypography
-          onClick={() => handleEdit(item.order_number, "/order_providers")}
+          onClick={() => navigate("/orders/" + item.id + "/provider-chat/")}
           component="a"
           href="#"
           variant="caption"

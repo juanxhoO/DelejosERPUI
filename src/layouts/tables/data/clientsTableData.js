@@ -16,14 +16,13 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDBadge from "components/MDBadge";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-export default function data() {
 
-  const [clients,setClients] = useState([]);
+
+export default function data() {
+  const [clients, setClients] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -31,63 +30,80 @@ export default function data() {
         const response = await axios.get("http://localhost:3000/v1/users?role=CLIENT");
         setClients(response.data);
         console.log(clients);
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error);
       }
     }
     fetchData();
   }, []);
 
-  const Author = ({ image, name, email }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDBox ml={2} lineHeight={1}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
-          {name}
-        </MDTypography>
-        <MDTypography variant="caption">{email}</MDTypography>
-      </MDBox>
-    </MDBox>
-  );
+  const fetchedRows = [];
 
-  const Job = ({ title, description }) => (
-    <MDBox lineHeight={1} textAlign="left">
-      <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-        {title}
-      </MDTypography>
-      <MDTypography variant="caption">{description}</MDTypography>
-    </MDBox>
+  fetchedRows.push(
+    ...clients.map((client) => ({
+      name: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {client.name}
+        </MDTypography>
+      ),
+      lastname: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {client.lastname}
+        </MDTypography>
+      ),
+      email: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {client.email}
+        </MDTypography>
+      ),
+      address: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {client.address}
+        </MDTypography>
+      ),
+      // country: (
+      //   <MDTypography variant="caption" color="text" fontWeight="medium">
+      //     {provider.country}
+      //   </MDTypography>
+      // ),
+      city: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {client.city}
+        </MDTypography>
+      ),
+      phone: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {client.phone1}
+        </MDTypography>
+      ),
+      action: (
+        <MDTypography
+          onClick={() => handleEdit(client.id)}
+          component="a"
+          href="#"
+          variant="caption"
+          color="text"
+          fontWeight="medium"
+        >
+          Edit
+        </MDTypography>
+      ),
+    }))
   );
 
   return {
     columns: [
-      { Header: "author", accessor: "author", align: "left" },
-      { Header: "function", accessor: "function", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
-      { Header: "employed", accessor: "employed", align: "center" },
+
+      { Header: "Name", accessor: "name", align: "left" },
+      { Header: "Lastname", accessor: "lastname", align: "left" },
+      { Header: "Email", accessor: "email", align: "center" },
+      { Header: "Address", accessor: "address", align: "center" },
+      { Header: "Country", accessor: "country", align: "center" },
+      { Header: "City", accessor: "city", align: "center" },
+      { Header: "Phone", accessor: "phone", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
 
-    rows: [
-      {
-        author: <Author name="John Michael" email="john@creative-tim.com" />,
-        function: <Job title="Manager" description="Organization" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            23/04/18
-          </MDTypography>
-        ),
-        action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
-        ),
-      },
-    ],
+    rows: [fetchedRows],
   };
 }

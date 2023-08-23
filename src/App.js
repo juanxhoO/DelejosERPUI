@@ -175,7 +175,6 @@ export default function App() {
               {getRoutesPrivate(routes)}
               <Route path="*" element={<Navigate to="/dashboard" />} />
             </Route>
-
           </Route>
           <Route>{getRoutes(routes)}</Route>
         </Routes>

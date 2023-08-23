@@ -211,7 +211,6 @@ function Reportes() {
           Show Report
         </MDButton>
       </MDBox>
-
     </DashboardLayout>
   );
 }

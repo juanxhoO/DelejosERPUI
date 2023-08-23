@@ -9,7 +9,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import MDButton from "components/MDButton";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-function ProviderOrder() {
+function ClientMessageCard() {
   const params = useParams();
   const [value, setValue] = useState("");
 
@@ -153,4 +153,4 @@ function ProviderOrder() {
   );
 }
 
-export default ProviderOrder;
+export default ClientMessageCard;

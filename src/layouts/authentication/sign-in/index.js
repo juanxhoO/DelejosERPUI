@@ -13,15 +13,13 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState} from "react";
-
+import { useState } from "react";
 // react-router-dom components
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
-import AuthContext from "context/AuthProvider";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -30,7 +28,6 @@ import MDButton from "components/MDButton";
 
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
-
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
@@ -39,28 +36,30 @@ import axios from "axios";
 import useAuth from "hooks/useAuth";
 
 function Basic() {
-
   const [rememberMe, setRememberMe] = useState(false);
   const { setAuth } = useAuth();
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
-  const [email, SetEmail] = useState('');
-  const [pwd, SetPwd] = useState('');
-  const [error, setError] = useState('');
-  
+  const [email, SetEmail] = useState("");
+  const [pwd, SetPwd] = useState("");
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/v1/auth/login", { "email": email, "password": pwd }, { withCredentials: true });
+      const response = await axios.post(
+        "http://localhost:3000/v1/auth/login",
+        { email: email, password: pwd },
+        { withCredentials: true }
+      );
       const accessToken = response.data.tokens.access.token;
-      setAuth({accessToken});
-      navigate('/');
-    }
-    catch (error) {
+      setAuth({ accessToken });
+      navigate("/");
+    } catch (error) {
       console.log(error);
-      setError(error.response.data.message);      
+      setError(error.response.data.message);
     }
   };
   return (
@@ -121,6 +120,19 @@ function Basic() {
               <MDButton type="submit" variant="gradient" color="info" fullWidth>
                 sign in
               </MDButton>
+            </MDBox>
+            <MDBox mt={3} mb={1} textAlign="center">
+                <MDTypography
+                  component={Link}
+                  to="/authentication/reset-password"
+                  variant="button"
+                  color="info"
+                  fontWeight="medium"
+                  textGradient
+                >
+                Reset Password{" "}
+                  
+                </MDTypography>
             </MDBox>
             <p>{error ? error : null}</p>
           </MDBox>

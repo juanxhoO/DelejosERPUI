@@ -40,8 +40,6 @@ import Face6Icon from "@mui/icons-material/Face6";
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
 import Billing from "layouts/billing";
-import Notifications from "layouts/notifications";
-import Profile from "layouts/profile";
 import Providers from "layouts/providers";
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -60,10 +58,12 @@ import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import SellIcon from "@mui/icons-material/Sell";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import CreateProvider from "layouts/providers/CreateProvider";
-import ProviderOrder from "layouts/orders/ProviderOrder";
 import ClientOrder from "layouts/orders/ClientOrder";
 import Users from "layouts/profile/Users";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import Cover from "layouts/authentication/reset-password/cover";
+import ProviderMessageCard from "layouts/orders/ProviderMessageCard";
+import ClientMessageCard from "layouts/orders/ClientMessageCard";
 const routes = [
   {
     type: "collapse",
@@ -179,20 +179,25 @@ const routes = [
   },
   {
     context: "private",
+    name: "Client Chat",
+    key: "client-chat",
+    route: "/orders/:id/provider-chat",
+    component: <ProviderMessageCard/>,
+  },
+  {
+    context: "private",
+    name: "Provider Chat",
+    key: "provider-chat",
+    route: "/orders/:id/client-chat",
+    component: <ClientMessageCard/>,
+  },
+  {
+    context: "private",
     name: "Client",
     key: "client",
     route: "/clients/:id",
     component: <Client />,
   },
-
-  {
-    context: "private",
-    name: "Order Provider",
-    key: "order_provider",
-    route: "/order_providers/:id",
-    component: <ProviderOrder />,
-  },
-
   {
     context: "private",
     name: "Order Clients",
@@ -208,6 +213,14 @@ const routes = [
     route: "/providers/create",
     component: <CreateProvider />,
   },
+  {
+    context: "public",
+    name: "Change Password",
+    key: "change_password",
+    route: "/authentication/reset-password",
+    component: <Cover/>,
+  },
+
   {
     context: "private",
     name: "Change Password",
