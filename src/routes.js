@@ -182,14 +182,14 @@ const routes = [
     name: "Client Chat",
     key: "client-chat",
     route: "/orders/:id/provider-chat",
-    component: <ProviderMessageCard/>,
+    component: <ProviderMessageCard />,
   },
   {
     context: "private",
     name: "Provider Chat",
     key: "provider-chat",
     route: "/orders/:id/client-chat",
-    component: <ClientMessageCard/>,
+    component: <ClientMessageCard />,
   },
   {
     context: "private",
@@ -218,7 +218,7 @@ const routes = [
     name: "Change Password",
     key: "change_password",
     route: "/authentication/reset-password",
-    component: <Cover/>,
+    component: <Cover />,
   },
 
   {

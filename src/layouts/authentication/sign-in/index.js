@@ -122,17 +122,16 @@ function Basic() {
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
-                <MDTypography
-                  component={Link}
-                  to="/authentication/reset-password"
-                  variant="button"
-                  color="info"
-                  fontWeight="medium"
-                  textGradient
-                >
+              <MDTypography
+                component={Link}
+                to="/authentication/reset-password"
+                variant="button"
+                color="info"
+                fontWeight="medium"
+                textGradient
+              >
                 Reset Password{" "}
-                  
-                </MDTypography>
+              </MDTypography>
             </MDBox>
             <p>{error ? error : null}</p>
           </MDBox>

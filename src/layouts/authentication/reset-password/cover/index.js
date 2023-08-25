@@ -31,31 +31,28 @@ import axios from "config/axios";
 import { useEffect, useState } from "react";
 
 function Cover() {
-
   const [email, SetEmail] = useState("");
- const [error, setError] = useState("");
+  const [error, setError] = useState("");
 
   const handleNewPass = async function (e) {
     e.preventDefault();
     console.log(email);
     try {
-      const response = await axios.post("http://localhost:3000/v1/auth/forgot-password", {email:email},{
-        headers: { 'Content-Type': 'application/json' },
-
-      });
+      const response = await axios.post(
+        "http://localhost:3000/v1/auth/forgot-password",
+        { email: email },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       console.log(response);
-
-    }
-    catch (error) {
-
+    } catch (error) {
       setError(error.response.data.message);
       console.log(error);
     }
-  }
+  };
 
-  useEffect(()=>{
-    
-  },[email]);
+  useEffect(() => {}, [email]);
 
   return (
     <CoverLayout coverHeight="50vh" image={bgImage}>
@@ -81,7 +78,14 @@ function Cover() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox onSubmit={handleNewPass} component="form" role="form">
             <MDBox mb={4}>
-              <MDInput onChange={(e) => SetEmail(e.target.value)} type="email" value={email} label="Email" variant="standard" fullWidth />
+              <MDInput
+                onChange={(e) => SetEmail(e.target.value)}
+                type="email"
+                value={email}
+                label="Email"
+                variant="standard"
+                fullWidth
+              />
             </MDBox>
             <MDBox mt={6} mb={1}>
               <MDButton type="submit" variant="gradient" color="info" fullWidth>

@@ -20,7 +20,6 @@ import MDTypography from "components/MDTypography";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
 export default function data() {
   const [clients, setClients] = useState([]);
 
@@ -93,7 +92,6 @@ export default function data() {
 
   return {
     columns: [
-
       { Header: "Name", accessor: "name", align: "left" },
       { Header: "Lastname", accessor: "lastname", align: "left" },
       { Header: "Email", accessor: "email", align: "center" },

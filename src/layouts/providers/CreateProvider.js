@@ -14,7 +14,14 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import { MenuItem, TableBody, TableContainer, TableRow, Typography, getCardUtilityClass } from "@mui/material";
+import {
+  MenuItem,
+  TableBody,
+  TableContainer,
+  TableRow,
+  Typography,
+  getCardUtilityClass,
+} from "@mui/material";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 // Material Dashboard 2 React example components
@@ -41,19 +48,19 @@ function CreateProvider() {
   const [cities, setCities] = useState([]);
   const navigate = useNavigate();
 
+  const PWD_REGEX = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
+  const EMAIL_REGEX =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const PWD_REGEX = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/
-  const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-  // Check Password  
+  // Check Password
   useEffect(() => {
     setValidPwd(PWD_REGEX.test(inputValues.password));
-  }, [inputValues.password])
+  }, [inputValues.password]);
 
-  //Check Email 
+  //Check Email
   useEffect(() => {
     setValidEmail(EMAIL_REGEX.test(inputValues.email));
-  }, [inputValues.email])
+  }, [inputValues.email]);
 
   useEffect(() => {
     //Fetching Countries
@@ -72,15 +79,14 @@ function CreateProvider() {
 
   const fetchCities = async function (countryCode) {
     try {
-      const response = await axios.get("http://localhost:3000/v1/countries/" + countryCode + "/cities");
+      const response = await axios.get(
+        "http://localhost:3000/v1/countries/" + countryCode + "/cities"
+      );
       setCities(response.data);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
-
     }
-  }
-
+  };
 
   const submitChanges = async (e) => {
     e.preventDefault();
@@ -118,9 +124,9 @@ function CreateProvider() {
                         setInputValues((prevValues) => ({
                           ...prevValues,
                           ["name"]: e.target.value,
-                        }))
-                      }}>
-                    </MDInput>
+                        }));
+                      }}
+                    ></MDInput>
                   </TableCell>
                 </TableRow>
 
@@ -138,12 +144,11 @@ function CreateProvider() {
                         setInputValues((prevValues) => ({
                           ...prevValues,
                           ["lastname"]: e.target.value,
-                        }))
-                      }}>
-                    </MDInput>
+                        }));
+                      }}
+                    ></MDInput>
                   </TableCell>
                 </TableRow>
-
 
                 <TableRow>
                   <TableCell>
@@ -159,12 +164,11 @@ function CreateProvider() {
                         setInputValues((prevValues) => ({
                           ...prevValues,
                           ["contact"]: e.target.value,
-                        }))
-                      }}>
-                    </MDInput>
+                        }));
+                      }}
+                    ></MDInput>
                   </TableCell>
                 </TableRow>
-
 
                 <TableRow>
                   <TableCell>
@@ -181,16 +185,20 @@ function CreateProvider() {
                         setInputValues((prevValues) => ({
                           ...prevValues,
                           ["password"]: e.target.value,
-                        }))
-                      }}>
-                    </MDInput>
-                    <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
-                      8 to 24 characters.<br />
-                      Must include uppercase and lowercase letters, and a number.<br />
+                        }));
+                      }}
+                    ></MDInput>
+                    <p
+                      id="pwdnote"
+                      className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
+                    >
+                      8 to 24 characters.
+                      <br />
+                      Must include uppercase and lowercase letters, and a number.
+                      <br />
                     </p>
                   </TableCell>
                 </TableRow>
-
 
                 <TableRow>
                   <TableCell>
@@ -206,9 +214,9 @@ function CreateProvider() {
                         setInputValues((prevValues) => ({
                           ...prevValues,
                           ["address"]: e.target.value,
-                        }))
-                      }}>
-                    </MDInput>
+                        }));
+                      }}
+                    ></MDInput>
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -225,12 +233,11 @@ function CreateProvider() {
                         setInputValues((prevValues) => ({
                           ...prevValues,
                           ["phone"]: e.target.value,
-                        }))
-                      }}>
-                    </MDInput>
+                        }));
+                      }}
+                    ></MDInput>
                   </TableCell>
                 </TableRow>
-
 
                 <TableRow>
                   <TableCell>
@@ -248,16 +255,18 @@ function CreateProvider() {
                         setInputValues((prevValues) => ({
                           ...prevValues,
                           ["email"]: e.target.value,
-                        }))
-                      }}>
-                    </MDInput>
-                    <p id="emailnote" className={emailFocus && !validEmail ? "instructions" : "offscreen"}>
-                      Invalid Email Format.<br />
-
+                        }));
+                      }}
+                    ></MDInput>
+                    <p
+                      id="emailnote"
+                      className={emailFocus && !validEmail ? "instructions" : "offscreen"}
+                    >
+                      Invalid Email Format.
+                      <br />
                     </p>
                   </TableCell>
                 </TableRow>
-
 
                 <TableRow>
                   <TableCell>
@@ -271,7 +280,9 @@ function CreateProvider() {
                       value={inputValues["country"] || ""}
                       onChange={(e) => {
                         const selectedCountryName = e.target.value;
-                        const selectedCountry = countries.find((country) => country.name === selectedCountryName);
+                        const selectedCountry = countries.find(
+                          (country) => country.name === selectedCountryName
+                        );
 
                         if (selectedCountry) {
                           setInputValues((prevValues) => ({
@@ -288,10 +299,8 @@ function CreateProvider() {
                         </MenuItem>
                       ))}
                     </Select>
-
                   </TableCell>
                 </TableRow>
-
 
                 <TableRow>
                   <TableCell>
@@ -321,7 +330,6 @@ function CreateProvider() {
                     <Typography>Observations:</Typography>
                   </TableCell>
                   <TableCell>
-
                     <TextareaAutosize
                       minRows={7}
                       value={inputValues["observations"] || ""}
@@ -332,10 +340,8 @@ function CreateProvider() {
                         }));
                       }}
                     />
-
                   </TableCell>
                 </TableRow>
-
               </TableBody>
             </Table>
             <MDButton

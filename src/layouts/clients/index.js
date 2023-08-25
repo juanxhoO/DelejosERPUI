@@ -30,8 +30,7 @@ import MDButton from "components/MDButton";
 
 function Clients() {
   const { columns, rows } = clientsTableData();
-  
-  
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
