@@ -75,7 +75,9 @@ function Provider() {
       try {
         const response = await axios.get("http://localhost:3000/v1/countries");
         setCountries(response.data);
-      } catch (error) {
+        console.log(response.data);
+      }
+       catch (error) {
         console.log(error);
       }
     }
@@ -322,7 +324,7 @@ function Provider() {
                         if (selectedCountry) {
                           setInputValues((prevValues) => ({
                             ...prevValues,
-                            country: selectedCountry.id,
+                            countryId: selectedCountry.id,
                           }));
                           setProvider((prevValues) => ({
                             ...prevValues,

@@ -21,7 +21,6 @@ function ProviderMessageCard() {
     //Get Provider list
     const fetchProviders = async () => {
       const response = await axios.get("http://localhost:3000/v1/users?role=USER");
-      console.log(response.data);
       setProviders(response.data);
     };
     fetchProviders();

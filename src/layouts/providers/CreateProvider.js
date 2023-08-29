@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import {
+  FormControl,
   MenuItem,
   TableBody,
   TableContainer,
@@ -36,6 +37,7 @@ import MDButton from "components/MDButton";
 import Select from "@mui/material/Select";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import InputLabel from "@mui/material/InputLabel";
+import SelectVariants from "./SelectDemo";
 
 function CreateProvider() {
   const { id } = useParams();
@@ -96,7 +98,7 @@ function CreateProvider() {
         withCredentials: false,
       });
       console.log(response.data);
-      navigate("/providers");
+      //navigate("/providers");
     } catch (error) {
       console.log(error);
     }
@@ -123,7 +125,7 @@ function CreateProvider() {
                       onChange={(e) => {
                         setInputValues((prevValues) => ({
                           ...prevValues,
-                          ["name"]: e.target.value,
+                          name: e.target.value,
                         }));
                       }}
                     ></MDInput>
@@ -136,14 +138,13 @@ function CreateProvider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      required
                       variant="outlined"
                       label="lastname"
                       value={inputValues["lastname"] || ""}
                       onChange={(e) => {
                         setInputValues((prevValues) => ({
                           ...prevValues,
-                          ["lastname"]: e.target.value,
+                          lastname: e.target.value,
                         }));
                       }}
                     ></MDInput>
@@ -156,14 +157,13 @@ function CreateProvider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      required
                       variant="outlined"
                       label="Contact"
                       value={inputValues["contact"] || ""}
                       onChange={(e) => {
                         setInputValues((prevValues) => ({
                           ...prevValues,
-                          ["contact"]: e.target.value,
+                          contact: e.target.value,
                         }));
                       }}
                     ></MDInput>
@@ -184,7 +184,7 @@ function CreateProvider() {
                       onChange={(e) => {
                         setInputValues((prevValues) => ({
                           ...prevValues,
-                          ["password"]: e.target.value,
+                          password: e.target.value,
                         }));
                       }}
                     ></MDInput>
@@ -206,14 +206,13 @@ function CreateProvider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      required
                       variant="outlined"
                       label="Address"
                       value={inputValues["address"] || ""}
                       onChange={(e) => {
                         setInputValues((prevValues) => ({
                           ...prevValues,
-                          ["address"]: e.target.value,
+                          address: e.target.value,
                         }));
                       }}
                     ></MDInput>
@@ -225,14 +224,13 @@ function CreateProvider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      required
                       variant="outlined"
                       label="Phone"
                       value={inputValues["phone"] || ""}
                       onChange={(e) => {
                         setInputValues((prevValues) => ({
                           ...prevValues,
-                          ["phone"]: e.target.value,
+                          phone: e.target.value,
                         }));
                       }}
                     ></MDInput>
@@ -254,7 +252,7 @@ function CreateProvider() {
                       onChange={(e) => {
                         setInputValues((prevValues) => ({
                           ...prevValues,
-                          ["email"]: e.target.value,
+                          email: e.target.value,
                         }));
                       }}
                     ></MDInput>
@@ -273,32 +271,35 @@ function CreateProvider() {
                     <Typography>Country</Typography>
                   </TableCell>
                   <TableCell>
-                    <InputLabel id="demo-simple-label">Country</InputLabel>
-                    <Select
-                      labelId="country-label"
-                      label="Country"
-                      value={inputValues["country"] || ""}
-                      onChange={(e) => {
-                        const selectedCountryName = e.target.value;
-                        const selectedCountry = countries.find(
-                          (country) => country.name === selectedCountryName
-                        );
+                    <FormControl sx={{ minWidth: 220 }}>
+                      <InputLabel id="country-label">Select Country</InputLabel>
+                      <Select
+                        labelId="country-label"
+                        label="Country"
+                        value={inputValues["country"] || ""}
+                        onChange={(e) => {
+                          const selectedCountryName = e.target.value;
+                          const selectedCountry = countries.find(
+                            (country) => country.name === selectedCountryName
+                          );
 
-                        if (selectedCountry) {
-                          setInputValues((prevValues) => ({
-                            ...prevValues,
-                            ["country"]: selectedCountry.name,
-                          }));
-                          fetchCities(selectedCountry.code); // Pass the country code to fetchCities
-                        }
-                      }}
-                    >
-                      {countries.map((country) => (
-                        <MenuItem key={country.code} value={country.name}>
-                          {country.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
+                          if (selectedCountry) {
+                            setInputValues((prevValues) => ({
+                              ...prevValues,
+                              countryId: selectedCountry.id,
+                            }));
+                            fetchCities(selectedCountry.code); // Pass the country code to fetchCities
+                          }
+                        }}
+                      >
+                        {countries.map((country) => (
+                          <MenuItem key={country.code} value={country.name}>
+                            {country.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
                   </TableCell>
                 </TableRow>
 
@@ -307,21 +308,28 @@ function CreateProvider() {
                     <Typography>City:</Typography>
                   </TableCell>
                   <TableCell>
-                    <Select
-                      value={inputValues["city"] || ""}
-                      onChange={(e) => {
-                        setInputValues((prevValues) => ({
-                          ...prevValues,
-                          ["city"]: e.target.value,
-                        }));
-                      }}
-                    >
-                      {cities.map((city) => (
-                        <MenuItem key={city.id} value={getCardUtilityClass.name}>
-                          {city.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
+
+                    <FormControl sx={{ minWidth: 220 }}>
+                      <InputLabel id="city-label">Select City</InputLabel>
+                      <Select
+                        labelId="city-label"
+                        label="City"
+                        value={inputValues["city"] || ""}
+                        onChange={(e) => {
+                          setInputValues((prevValues) => ({
+                            ...prevValues,
+                            city: e.target.value,
+                          }));
+                        }}
+                      >
+                        {cities.map((city) => (
+                          <MenuItem key={city.id} value={getCardUtilityClass.name}>
+                            {city.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
                   </TableCell>
                 </TableRow>
 
@@ -336,7 +344,7 @@ function CreateProvider() {
                       onChange={(e) => {
                         setInputValues((prevValues) => ({
                           ...prevValues,
-                          ["observations"]: e.target.value,
+                          observations: e.target.value,
                         }));
                       }}
                     />
@@ -351,10 +359,11 @@ function CreateProvider() {
               p={4}
               sx={{ margin: "20px", float: "right" }}
             >
-              Submit
+              Create Provider
             </MDButton>
           </MDBox>
         </TableContainer>
+        <SelectVariants />
       </MDBox>
     </DashboardLayout>
   );

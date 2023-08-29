@@ -20,11 +20,11 @@ import MDTypography from "components/MDTypography";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
-function Shops() {
+function Shop() {
   return (
     <DashboardLayout>
     </DashboardLayout>
   );
 }
 
-export default Shops;
+export default Shop;
