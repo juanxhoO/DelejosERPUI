@@ -22,7 +22,9 @@ function ProviderMessageCard() {
     const fetchProviders = async () => {
       const response = await axios.get("http://localhost:3000/v1/users?role=USER");
       setProviders(response.data);
-    };
+      console.log(response.data);
+    }
+    
     fetchProviders();
     //Get Order Data
     const fetchOrder = async () => {
@@ -69,7 +71,7 @@ function ProviderMessageCard() {
       <Card>
         <MDBox onSubmit={handleSubmit} component="form" p={3}>
           <Typography fontWeight="bold" variant="h4" color="text">
-            Enviar a Proveedor la Orden # {params.id}
+            Enviar a Proveedor 
           </Typography>
 
           <MDBox className="labelProviderEmail">
@@ -79,8 +81,8 @@ function ProviderMessageCard() {
             <select>
               <option value="">Select a provider</option>
               {providers.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+                <option key={option.name} value={option.name}>
+                  {option.name}
                 </option>
               ))}
             </select>

@@ -37,7 +37,6 @@ import MDButton from "components/MDButton";
 import Select from "@mui/material/Select";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import InputLabel from "@mui/material/InputLabel";
-import SelectVariants from "./SelectDemo";
 
 function CreateProvider() {
   const { id } = useParams();
@@ -363,7 +362,6 @@ function CreateProvider() {
             </MDButton>
           </MDBox>
         </TableContainer>
-        <SelectVariants />
       </MDBox>
     </DashboardLayout>
   );
