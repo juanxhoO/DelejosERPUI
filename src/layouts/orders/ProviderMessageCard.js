@@ -9,6 +9,7 @@ import MDButton from "components/MDButton";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import MDInput from "components/MDInput";
 import MessageFrame from "components/MessageFrame";
+import { Height } from "@mui/icons-material";
 
 function ProviderMessageCard() {
   const params = useParams();
@@ -24,7 +25,7 @@ function ProviderMessageCard() {
       setProviders(response.data);
       console.log(response.data);
     }
-    
+
     fetchProviders();
     //Get Order Data
     const fetchOrder = async () => {
@@ -40,8 +41,6 @@ function ProviderMessageCard() {
 
   // Style object to add more height to the editor
   const editorStyle = {
-    height: "400px", // Set the height of the editor to 400px (you can adjust this value as needed)
-    padding: "10px", // Add padding for space inside the editor
     boxSizing: "border-box",
   };
 
@@ -71,7 +70,7 @@ function ProviderMessageCard() {
       <Card>
         <MDBox onSubmit={handleSubmit} component="form" p={3}>
           <Typography fontWeight="bold" variant="h4" color="text">
-            Enviar a Proveedor 
+            Enviar a Proveedor
           </Typography>
 
           <MDBox className="labelProviderEmail">
@@ -108,15 +107,24 @@ function ProviderMessageCard() {
               ))}
             </select>
           </div>
-          <ReactQuill style={editorStyle} theme="snow" value={value} onChange={setValue} />
-          <MDButton
-            xs={{ marginTop: "10px", float: "right" }}
-            variant="gradient"
-            color="info"
-            type="submit"
-          >
-            Send
-          </MDButton>
+
+
+          <MDBox>
+            <ReactQuill style={editorStyle} value={value} onChange={setValue} />
+          </MDBox>
+
+          <MDBox mt={3} display="flex" justifyContent="flex-end">
+            <MDButton
+              
+              xs={{ display:"block",marginTop: "10px", float: "right" }}
+              variant="gradient"
+              color="info"
+              type="submit"
+            >
+              Send
+            </MDButton>
+          </MDBox>
+
         </MDBox>
       </Card>
     </DashboardLayout>

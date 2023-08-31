@@ -59,11 +59,11 @@ import SellIcon from "@mui/icons-material/Sell";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import CreateProvider from "layouts/providers/CreateProvider";
 import ClientOrder from "layouts/orders/ClientOrder";
-import Users from "layouts/profile/Users";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import Cover from "layouts/authentication/reset-password/cover";
 import ProviderMessageCard from "layouts/orders/ProviderMessageCard";
 import ClientMessageCard from "layouts/orders/ClientMessageCard";
+import CreateShop from "layouts/shops/CreateShop";
+import Shop  from "layouts/shops/Shop";
 const routes = [
   {
     type: "collapse",
@@ -128,15 +128,6 @@ const routes = [
   //   route: "/notifications",
   //   component: <Notifications />,
   // },
-  {
-    type: "collapse",
-    context: "private",
-    name: "Users",
-    key: "users",
-    icon: <PeopleAltIcon fontSize="small">notifications</PeopleAltIcon>,
-    route: "/users",
-    component: <Users />,
-  },
   // {
   //   type: "collapse",
   //   name: "Profile",
@@ -212,6 +203,20 @@ const routes = [
     key: "receipts",
     route: "/providers/create",
     component: <CreateProvider />,
+  },
+  {
+    context: "private",
+    name: "View Shop",
+    key: "shop",
+    route: "/shops/:id",
+    component: <Shop />,
+  },
+  {
+    context: "private",
+    name: "Create Shop",
+    key: "create shop",
+    route: "/shops/create",
+    component: < CreateShop/>,
   },
   {
     context: "public",
