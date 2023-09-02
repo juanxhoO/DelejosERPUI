@@ -24,7 +24,7 @@ function ProviderMessageCard() {
       const response = await axios.get("http://localhost:3000/v1/users?role=USER");
       setProviders(response.data);
       console.log(response.data);
-    }
+    };
 
     fetchProviders();
     //Get Order Data
@@ -108,15 +108,13 @@ function ProviderMessageCard() {
             </select>
           </div>
 
-
           <MDBox>
             <ReactQuill style={editorStyle} value={value} onChange={setValue} />
           </MDBox>
 
           <MDBox mt={3} display="flex" justifyContent="flex-end">
             <MDButton
-              
-              xs={{ display:"block",marginTop: "10px", float: "right" }}
+              xs={{ display: "block", marginTop: "10px", float: "right" }}
               variant="gradient"
               color="info"
               type="submit"
@@ -124,7 +122,6 @@ function ProviderMessageCard() {
               Send
             </MDButton>
           </MDBox>
-
         </MDBox>
       </Card>
     </DashboardLayout>

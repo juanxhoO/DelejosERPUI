@@ -35,7 +35,7 @@ export default function data() {
   useEffect(() => {
     async function fetchProviders() {
       try {
-        const response = await axios.get("http://localhost:3000/v1/users?role=USER");
+        const response = await axios.get("http://localhost:3000/v1/users?role=PROVIDER");
         setProviders(response.data);
         console.log(response.data);
       } catch (error) {
@@ -49,6 +49,11 @@ export default function data() {
 
   fetchedRows.push(
     ...providers.map((provider) => ({
+      shop: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {provider.shop.name}
+        </MDTypography>
+      ),
       name: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
           {provider.name}
@@ -57,11 +62,6 @@ export default function data() {
       lastname: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
           {provider.lastname}
-        </MDTypography>
-      ),
-      contact: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.contact}
         </MDTypography>
       ),
       email: (
@@ -74,24 +74,26 @@ export default function data() {
           {provider.address}
         </MDTypography>
       ),
-      // country: (
-      //   <MDTypography variant="caption" color="text" fontWeight="medium">
-      //     {provider.country}
-      //   </MDTypography>
-      // ),
+      country: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {provider.country.name}
+        </MDTypography>
+      ),
       city: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.city}
+          {provider.city.name}
         </MDTypography>
       ),
-      phone1: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.phone1}
-        </MDTypography>
-      ),
-      phone2: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.phone2}
+      phones: (
+        <MDTypography
+          onClick={() => handleEdit(provider.id)}
+          component="a"
+          href="#"
+          variant="caption"
+          color="info"
+          fontWeight="medium"
+        >
+          View
         </MDTypography>
       ),
       action: (
@@ -100,7 +102,7 @@ export default function data() {
           component="a"
           href="#"
           variant="caption"
-          color="text"
+          color="info"
           fontWeight="medium"
         >
           Edit
@@ -110,15 +112,14 @@ export default function data() {
   );
   return {
     columns: [
+      { Header: "Shop", accessor: "shop", align: "center" },
       { Header: "Name", accessor: "name", align: "left" },
       { Header: "Lastname", accessor: "lastname", align: "left" },
-      { Header: "Contact", accessor: "contact", align: "center" },
       { Header: "Email", accessor: "email", align: "center" },
       { Header: "Address", accessor: "address", align: "center" },
       { Header: "Country", accessor: "country", align: "center" },
       { Header: "City", accessor: "city", align: "center" },
-      { Header: "Phone1", accessor: "phone1", align: "center" },
-      { Header: "Phone2", accessor: "phone2", align: "center" },
+      { Header: "Phones", accessor: "phones", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
     rows: fetchedRows,

@@ -26,10 +26,10 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Data
 import clientsTableData from "layouts/tables/data/clientsTableData";
-import MDButton from "components/MDButton";
 
 function Clients() {
   const { columns, rows } = clientsTableData();
+  console.log(rows);
 
   return (
     <DashboardLayout>

@@ -63,7 +63,7 @@ import Cover from "layouts/authentication/reset-password/cover";
 import ProviderMessageCard from "layouts/orders/ProviderMessageCard";
 import ClientMessageCard from "layouts/orders/ClientMessageCard";
 import CreateShop from "layouts/shops/CreateShop";
-import Shop  from "layouts/shops/Shop";
+import Shop from "layouts/shops/Shop";
 const routes = [
   {
     type: "collapse",
@@ -216,7 +216,7 @@ const routes = [
     name: "Create Shop",
     key: "create shop",
     route: "/shops/create",
-    component: < CreateShop/>,
+    component: <CreateShop />,
   },
   {
     context: "public",

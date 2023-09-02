@@ -54,16 +54,21 @@ export default function data() {
           {shop.name}
         </MDTypography>
       ),
-    //   address: (
-    //     <MDTypography variant="caption" color="text" fontWeight="medium">
-    //       {provider.address}
-    //     </MDTypography>
-    //   ),
-    //   city: (
-    //     <MDTypography variant="caption" color="text" fontWeight="medium">
-    //       {provider.city}
-    //     </MDTypography>
-    //   ),
+      address: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {shop.url}
+        </MDTypography>
+      ),
+      //   city: (
+      //     <MDTypography variant="caption" color="text" fontWeight="medium">
+      //       {provider.city}
+      //     </MDTypography>
+      //   ),
+         //   city: (
+      //     <MDTypography variant="caption" color="text" fontWeight="medium">
+      //       {provider.city}
+      //     </MDTypography>
+      //   ),
       action: (
         <MDTypography
           onClick={() => handleEdit(shop.id)}
@@ -81,14 +86,9 @@ export default function data() {
   return {
     columns: [
       { Header: "Name", accessor: "name", align: "left" },
-      { Header: "Lastname", accessor: "lastname", align: "left" },
-      { Header: "Contact", accessor: "contact", align: "center" },
-      { Header: "Email", accessor: "email", align: "center" },
-      { Header: "Address", accessor: "address", align: "center" },
+      { Header: "URL", accessor: "address", align: "center" },
       { Header: "Country", accessor: "country", align: "center" },
       { Header: "City", accessor: "city", align: "center" },
-      { Header: "Phone1", accessor: "phone1", align: "center" },
-      { Header: "Phone2", accessor: "phone2", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
     rows: fetchedRows,

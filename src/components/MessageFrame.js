@@ -24,7 +24,7 @@ function MessageFrame() {
   const sendMessage = async () => {
     try {
       const response = await axios.post("");
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const messages_putty = [
@@ -37,15 +37,19 @@ function MessageFrame() {
   ];
 
   return (
-    <MDBox  mb={8}>
-      <Card  >
+    <MDBox mb={8}>
+      <Card>
         <MDBox p={3}>
           <Typography variant="h3">Messages</Typography>
           {/* Show MEssages */}
           <MDBox pd={3}>
             <Typography fontWeight="bold">Jualia ROberts:</Typography>
             <Typography>22023-06-06 15:00</Typography>
-            <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus, massa porttitor volutpat dignissim, ex lorem blandit risus, vitae egestas quam nunc in risus. </Typography>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus, massa
+              porttitor volutpat dignissim, ex lorem blandit risus, vitae egestas quam nunc in
+              risus.{" "}
+            </Typography>
           </MDBox>
         </MDBox>
 
@@ -54,12 +58,10 @@ function MessageFrame() {
             <TextareaAutosize style={{ minWidth: "320px" }} minRows={8} />
 
             <MDBox mt={2}>
-              <MDButton
-                variant="gradient"
-                color="info"
-                type="submit">Send Message</MDButton>
+              <MDButton variant="gradient" color="info" type="submit">
+                Send Message
+              </MDButton>
             </MDBox>
-
           </MDBox>
         </MDBox>
       </Card>

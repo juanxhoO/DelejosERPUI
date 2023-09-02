@@ -17,12 +17,11 @@ function ClientMessageCard() {
   useEffect(() => {
     //Get Provider list
     const fetchProviders = async () => {
-      try{
+      try {
         const { data } = await axios.get(`http://localhost:3000/v1/users/?role=USER`);
         console.log(data);
         setProviders(data);
-      }
-      catch(error){
+      } catch (error) {
         console.log(error);
       }
     };
@@ -34,8 +33,7 @@ function ClientMessageCard() {
     };
     fetchProviders();
     //fetchOrder();
-  }
-  , []);
+  }, []);
 
   const emailHandleSubmit = async (event) => {
     console.log(value);
@@ -78,7 +76,7 @@ function ClientMessageCard() {
             </Typography>
             <select>
               <option value="">Select a provider</option>
-              {providers.map((option,index) => (
+              {providers.map((option, index) => (
                 <option key={index} value={option.name}>
                   {option.name}
                 </option>
@@ -120,7 +118,6 @@ function ClientMessageCard() {
               Send Email
             </MDButton>
           </MDBox>
-
         </MDBox>
       </Card>
     </DashboardLayout>

@@ -298,7 +298,6 @@ function CreateProvider() {
                         ))}
                       </Select>
                     </FormControl>
-
                   </TableCell>
                 </TableRow>
 
@@ -307,7 +306,6 @@ function CreateProvider() {
                     <Typography>City:</Typography>
                   </TableCell>
                   <TableCell>
-
                     <FormControl sx={{ minWidth: 220 }}>
                       <InputLabel id="city-label">Select City</InputLabel>
                       <Select
@@ -328,7 +326,6 @@ function CreateProvider() {
                         ))}
                       </Select>
                     </FormControl>
-
                   </TableCell>
                 </TableRow>
 

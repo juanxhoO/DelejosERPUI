@@ -57,7 +57,6 @@ function Provider() {
   }, [inputValues.email]);
 
   useEffect(() => {
-
     //Fetch Provider
 
     async function fetchProvider() {
@@ -69,15 +68,13 @@ function Provider() {
       }
     }
 
-
     //Fetching Countries
     async function fetchCountries() {
       try {
         const response = await axios.get("http://localhost:3000/v1/countries");
         setCountries(response.data);
         console.log(response.data);
-      }
-       catch (error) {
+      } catch (error) {
         console.log(error);
       }
     }
@@ -124,7 +121,6 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                     
                       variant="outlined"
                       label="name"
                       value={provider.name || ""}
@@ -148,7 +144,6 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      
                       variant="outlined"
                       label="lastname"
                       value={provider.lastname || ""}
@@ -172,7 +167,6 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      
                       variant="outlined"
                       label="Contact"
                       value={provider.contact || ""}
@@ -197,7 +191,6 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      
                       variant="outlined"
                       label="Password"
                       onFocus={() => setPwdFocus(true)}
@@ -231,7 +224,6 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      
                       variant="outlined"
                       label="Address"
                       value={provider.address || ""}
@@ -254,7 +246,6 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                      
                       variant="outlined"
                       label="Phone"
                       value={provider.phone || ""}
@@ -280,7 +271,6 @@ function Provider() {
                     <MDInput
                       onBlur={() => setEmailFocus(false)}
                       onFocus={() => setEmailFocus(true)}
-                      
                       variant="outlined"
                       label="Email"
                       value={provider.email || ""}
@@ -408,7 +398,6 @@ function Provider() {
     </DashboardLayout>
   );
 }
-
 
 export default Provider;
 

@@ -21,10 +21,7 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 function CreateShop() {
-  return (
-    <DashboardLayout>
-    </DashboardLayout>
-  );
+  return <DashboardLayout></DashboardLayout>;
 }
 
 export default CreateShop;

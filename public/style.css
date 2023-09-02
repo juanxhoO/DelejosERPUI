@@ -1,6 +1,5 @@
-/* React Quill Styes */ 
+/* React Quill Styes */
 
-
-.quill .ql-container{
-    min-height: 200px !important;
+.quill .ql-container {
+  min-height: 200px !important;
 }

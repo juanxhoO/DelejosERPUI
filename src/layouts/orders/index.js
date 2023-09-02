@@ -26,7 +26,6 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Data
 import ordersTableData from "layouts/tables/data/ordersTableData";
-import MDButton from "components/MDButton";
 
 function Orders() {
   const { columns, rows } = ordersTableData();

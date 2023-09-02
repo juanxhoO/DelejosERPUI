@@ -19,22 +19,30 @@ Coded by www.creative-tim.com
 import MDTypography from "components/MDTypography";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function data() {
   const [clients, setClients] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:3000/v1/users?role=CLIENT");
+        const response = await axios.get("http://localhost:3000/v1/clients");
         setClients(response.data);
-        console.log(clients);
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
   }, []);
+
+
+
+  const handleEdit = (id) => {
+    console.log("edit");
+    navigate("/clients/" + id );
+
+  }
 
   const fetchedRows = [];
 
@@ -65,16 +73,12 @@ export default function data() {
       //     {provider.country}
       //   </MDTypography>
       // ),
-      city: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {client.city}
-        </MDTypography>
-      ),
-      phone: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {client.phone1}
-        </MDTypography>
-      ),
+      // city: (
+      //   <MDTypography variant="caption" color="text" fontWeight="medium">
+      //     {client.city}
+      //   </MDTypography>
+      // ),
+
       action: (
         <MDTypography
           onClick={() => handleEdit(client.id)}
@@ -96,12 +100,12 @@ export default function data() {
       { Header: "Lastname", accessor: "lastname", align: "left" },
       { Header: "Email", accessor: "email", align: "center" },
       { Header: "Address", accessor: "address", align: "center" },
-      { Header: "Country", accessor: "country", align: "center" },
-      { Header: "City", accessor: "city", align: "center" },
-      { Header: "Phone", accessor: "phone", align: "center" },
+      // { Header: "Country", accessor: "country", align: "center" },
+      // { Header: "City", accessor: "city", align: "center" },
+      // { Header: "Phone", accessor: "phone", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
 
-    rows: [fetchedRows],
+    rows: fetchedRows,
   };
 }

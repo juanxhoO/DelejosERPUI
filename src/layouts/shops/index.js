@@ -26,7 +26,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Data
 
- import shopsTableData from "layouts/tables/data/shopsTableData";
+import shopsTableData from "layouts/tables/data/shopsTableData";
 function Shops() {
   const { columns, rows } = shopsTableData();
 

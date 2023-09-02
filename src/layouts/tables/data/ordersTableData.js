@@ -30,7 +30,7 @@ export default function data() {
     //Getting all Orders
     const FetchOrders = async () => {
       try {
-        const response = await axios.get("/v1/orders");
+        const response = await axios.get("/orders");
         setOrders(response.data);
         console.log(response.data);
       } catch (error) {
@@ -44,26 +44,7 @@ export default function data() {
     navigate("/orders/" + order_number + "/client-chat");
   };
 
-  // const orders = [
-  //   {
-  //     order_number: "12331",
-  //     ref: "323233",
-  //     delivery_date: "12/12/2021",
-  //     country: "Mexico",
-  //     arreglo: "No",
-  //     invoice_name: "Juan Perez",
-  //     send_to: "Juan Perez",
-  //     status: "Pending",
-  //     phone: "555555555",
-  //     languaje: "English",
-  //     site: "www.delejos.com.en",
-  //     total: "$100",
-  //     provider_status: "Pending",
-  //     provider_message: "Pending",id
-  //   },
-  // ];
-
-  const fetchedRows = [];
+   const fetchedRows = [];
 
   fetchedRows.push(
     ...orders.map((item) => ({
@@ -72,31 +53,26 @@ export default function data() {
           {item.id}
         </MDTypography>
       ),
-      ref: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {item.ref}
-        </MDTypography>
-      ),
       delivery_date: (
         <MDBox ml={-1}>
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            {item.delivery_date}
+            {item.deliveryDate}
           </MDTypography>
         </MDBox>
       ),
       country: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.country}
+          {item.country.name}
         </MDTypography>
       ),
-      arreglo: (
+      city: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.arreglo}
+          {item.city.name}
         </MDTypography>
       ),
       invoice_name: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.invoice_name}
+          {item.client.name + " " + item.client.lastname}
         </MDTypography>
       ),
       send_to: (
@@ -129,19 +105,9 @@ export default function data() {
           {item.total}
         </MDTypography>
       ),
-      status_provider: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.status_provider}
-        </MDTypography>
-      ),
       provider_status: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
           {item.provider_status}
-        </MDTypography>
-      ),
-      provider_message: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.provider_message}
         </MDTypography>
       ),
       action_client: (
@@ -174,10 +140,10 @@ export default function data() {
   return {
     columns: [
       { Header: "order#", accessor: "order_number", width: "45%", align: "left" },
-      { Header: "REF", accessor: "ref", align: "left" },
       { Header: "Delivery Date", accessor: "delivery_date", align: "center" },
       { Header: "country", accessor: "country", align: "center" },
-      { Header: "Arreglo", accessor: "arreglo", align: "center" },
+      { Header: "city", accessor: "city", align: "center" },
+      { Header: "product", accessor: "product", align: "center" },
       { Header: "Invoice Name", accessor: "invoice_name", align: "center" },
       { Header: "Send To", accessor: "send_to", align: "center" },
       { Header: "Status", accessor: "status", align: "center" },
@@ -186,7 +152,6 @@ export default function data() {
       { Header: "Site", accessor: "site", align: "center" },
       { Header: "Total", accessor: "total", align: "center" },
       { Header: "Provider Status", accessor: "provider_status", align: "center" },
-      { Header: "Provider Message", accessor: "provider_message", align: "center" },
       { Header: "Provider", accessor: "action_provider", align: "center" },
       { Header: "Client", accessor: "action_client", align: "center" },
       { Header: "Invoice", accessor: "action_invoice", align: "center" },
