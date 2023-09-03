@@ -76,10 +76,10 @@ export default function data() {
           component="a"
           href="#"
           variant="caption"
-          color="text"
+          color="info"
           fontWeight="medium"
         >
-          Edit
+          View
         </MDTypography>
       )
     }))

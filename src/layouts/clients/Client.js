@@ -35,7 +35,8 @@ import MDInput from "components/MDInput";
 function Client() {
   const { id } = useParams();
   const [client, setClient] = useState({});
-  const [inputValues,setInputValues] = useState({});
+  const [inputValues, setInputValues] = useState({});
+  const [countries, setCountries] = useState([])
   const fetchClient = async () => {
     try {
       const response = await axios.get(`/clients/` + id);
@@ -51,8 +52,21 @@ function Client() {
     e.preventDefault();
     console.log("submitted");
   }
+
+
+  const fetchCountries = async () => {
+    console.log("test");
+    try {
+      const response = await axios.get('/countries');
+      setCountries(response.data);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
   useEffect(() => {
     fetchClient();
+    fetchCountries();
   }, [])
 
   return (
@@ -177,14 +191,23 @@ function Client() {
                   </TableCell>
                 </TableRow>
 
-                {/* <TableRow>
+                <TableRow>
                   <TableCell>
                     <Typography>Country</Typography>
                   </TableCell>
                   <TableCell>
-                    <InputLabel id="demo-simple-label">Country</InputLabel>
-                    <Select
-                      labelId="country-label"
+                    <MDInput variant="outlined"
+                      label="Country"
+                      value={client.country?.name || ""}
+                      onChange={(e) => {
+                        setClient((prevValues) => ({
+                          ...prevValues,
+                          email: e.target.value,
+                        }));
+                      }}>
+
+                    </MDInput>
+                    {/* <select
                       label="Country"
                       value={client.country || ""}
                       onChange={(e) => {
@@ -207,14 +230,14 @@ function Client() {
                       }}
                     >
                       {countries.map((country) => (
-                        <MenuItem key={country.id} value={country.name}>
+                        <option key={country.id} value={country.name}>
                           {country.name}
-                        </MenuItem>
+                        </option>
                       ))}
-                    </Select>
+                    </select> */}
                   </TableCell>
                 </TableRow>
-
+                {/* 
                 <TableRow>
                   <TableCell>
                     <Typography>City:</Typography>

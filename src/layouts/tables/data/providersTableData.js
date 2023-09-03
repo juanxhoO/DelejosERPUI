@@ -88,7 +88,8 @@ export default function data() {
       phones: (
         <MDTypography
           onClick={() => handleEdit(provider.id)}
-
+          href="#"
+          component="a"
           variant="caption"
           color="info"
           fontWeight="medium"
@@ -99,7 +100,8 @@ export default function data() {
       action: (
         <MDTypography
           onClick={() => handleEdit(provider.id)}
-
+          href="#"
+          component="a"
           variant="caption"
           color="info"
           fontWeight="medium"

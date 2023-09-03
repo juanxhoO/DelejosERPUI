@@ -29,6 +29,7 @@ export default function data() {
       try {
         const response = await axios.get("http://localhost:3000/v1/clients");
         setClients(response.data);
+        console.log(response.data);   
       } catch (error) {
         console.log(error);
       }
@@ -68,16 +69,16 @@ export default function data() {
           {client.address}
         </MDTypography>
       ),
-      // country: (
-      //   <MDTypography variant="caption" color="text" fontWeight="medium">
-      //     {provider.country}
-      //   </MDTypography>
-      // ),
-      // city: (
-      //   <MDTypography variant="caption" color="text" fontWeight="medium">
-      //     {client.city}
-      //   </MDTypography>
-      // ),
+      country: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {client.country?.name || ""}
+        </MDTypography>
+      ),
+      city: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {client.city?.name || ""}
+        </MDTypography>
+      ),
 
       action: (
         <MDTypography
@@ -85,10 +86,10 @@ export default function data() {
           component="a"
           href="#"
           variant="caption"
-          color="text"
+          color="info"
           fontWeight="medium"
         >
-          Edit
+          View
         </MDTypography>
       ),
     }))
@@ -100,8 +101,8 @@ export default function data() {
       { Header: "Lastname", accessor: "lastname", align: "left" },
       { Header: "Email", accessor: "email", align: "center" },
       { Header: "Address", accessor: "address", align: "center" },
-      // { Header: "Country", accessor: "country", align: "center" },
-      // { Header: "City", accessor: "city", align: "center" },
+      { Header: "Country", accessor: "country", align: "center" },
+      { Header: "City", accessor: "city", align: "center" },
       // { Header: "Phone", accessor: "phone", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],

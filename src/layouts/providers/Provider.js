@@ -30,6 +30,7 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function Provider() {
   const { id } = useParams();
@@ -109,6 +110,7 @@ function Provider() {
 
   return (
     <DashboardLayout>
+      <DashboardNavbar />
       <MDBox>
 
         <TableContainer>
