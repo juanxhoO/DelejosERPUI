@@ -23,7 +23,6 @@ import DataTable from "examples/Tables/DataTable";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-
 // Data
 import ordersTableData from "layouts/tables/data/ordersTableData";
 

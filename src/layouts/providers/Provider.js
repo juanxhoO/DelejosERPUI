@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import { TableBody, TableContainer, TableRow, Typography } from "@mui/material";
+import { TableBody, TableContainer, TableRow, Typography, FormControl } from "@mui/material";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 // Material Dashboard 2 React example components
@@ -110,9 +110,12 @@ function Provider() {
   return (
     <DashboardLayout>
       <MDBox>
-        <p>New Provider {id}</p>
+
         <TableContainer>
+
           <MDBox onSubmit={submitChanges} component="form" p={4}>
+            <Typography variant="h3">Provider {id}</Typography>
+
             <Table>
               <TableBody>
                 <TableRow>
@@ -121,6 +124,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
+                      type="text"
                       variant="outlined"
                       label="name"
                       value={provider.name || ""}
@@ -144,6 +148,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
+                      type="text"
                       variant="outlined"
                       label="lastname"
                       value={provider.lastname || ""}
@@ -160,37 +165,13 @@ function Provider() {
                     ></MDInput>
                   </TableCell>
                 </TableRow>
-
-                <TableRow>
-                  <TableCell>
-                    <Typography>Contact</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <MDInput
-                      variant="outlined"
-                      label="Contact"
-                      value={provider.contact || ""}
-                      onChange={(e) => {
-                        setInputValues((prevValues) => ({
-                          ...prevValues,
-                          contact: e.target.value,
-                        }));
-
-                        setProvider((prevValues) => ({
-                          ...prevValues,
-                          contact: e.target.value,
-                        }));
-                      }}
-                    ></MDInput>
-                  </TableCell>
-                </TableRow>
-
                 <TableRow>
                   <TableCell>
                     <Typography>Password</Typography>
                   </TableCell>
                   <TableCell>
                     <MDInput
+                    type="password"
                       variant="outlined"
                       label="Password"
                       onFocus={() => setPwdFocus(true)}
@@ -224,6 +205,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
+                    type="text"
                       variant="outlined"
                       label="Address"
                       value={provider.address || ""}
@@ -246,6 +228,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
+                    type="tel"
                       variant="outlined"
                       label="Phone"
                       value={provider.phone || ""}
@@ -269,6 +252,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
+                    type="email"
                       onBlur={() => setEmailFocus(false)}
                       onFocus={() => setEmailFocus(true)}
                       variant="outlined"
@@ -300,40 +284,38 @@ function Provider() {
                     <Typography>Country</Typography>
                   </TableCell>
                   <TableCell>
-                    <InputLabel id="demo-simple-label">Country</InputLabel>
-                    <Select
-                      labelId="country-label"
-                      label="Country"
-                      value={provider.country || ""}
-                      onChange={(e) => {
-                        const selectedCountryName = e.target.value;
-                        const selectedCountry = countries.find(
-                          (country) => country.name === selectedCountryName
-                        );
+                      <select
+                        value={provider.country?.name}
+                        onChange={(e) => {
+                          const selectedCountryName = e.target.value;
+                          const selectedCountry = countries.find(
+                            (country) => country.name === selectedCountryName
+                          );
 
-                        if (selectedCountry) {
-                          setInputValues((prevValues) => ({
-                            ...prevValues,
-                            countryId: selectedCountry.id,
-                          }));
-                          setProvider((prevValues) => ({
-                            ...prevValues,
-                            country: e.target.value,
-                          }));
-                          fetchCities(selectedCountry.code); // Pass the country code to fetchCities
-                        }
-                      }}
-                    >
-                      {countries.map((country) => (
-                        <MenuItem key={country.id} value={country.name}>
-                          {country.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
+                          if (selectedCountry) {
+                            setInputValues((prevValues) => ({
+                              ...prevValues,
+                              countryId: selectedCountry.id,
+                            }));
+                            setProvider((prevValues) => ({
+                              ...prevValues,
+                              country: e.target.value,
+                            }));
+                            fetchCities(selectedCountry.code); // Pass the country code to fetchCities
+                          }
+                        }}
+                      >
+                        {countries.map((country) => (
+                          <option key={country.id} value={country.name}>
+                            {country.name}
+                          </option>
+                        ))}
+                      </select>
+
                   </TableCell>
                 </TableRow>
 
-                <TableRow>
+                {/* <TableRow>
                   <TableCell>
                     <Typography>City:</Typography>
                   </TableCell>
@@ -358,7 +340,7 @@ function Provider() {
                       ))}
                     </Select>
                   </TableCell>
-                </TableRow>
+                </TableRow> */}
 
                 <TableRow>
                   <TableCell>
@@ -400,54 +382,3 @@ function Provider() {
 }
 
 export default Provider;
-
-// <TableCell>
-// {row.type === "textarea" ? (
-//   <TextareaAutosize
-//     minRows={7}
-//     value={provider[row.id] || ""}
-//     onChange={(e) => {
-//       setProvider((prevValues) => ({
-//         ...prevValues,
-//         [row.id]: e.target.value,
-//       }));
-//       setChangedProvider((prevValues) => ({
-//         ...prevValues,
-//         [row.id]: e.target.value,
-//       }));
-//     }}
-//   />
-// ) : row.type === "select" ? (
-//   <Select
-//     value={provider[row.id] || ""}
-//     onChange={(e) => {
-//       setProvider((prevValues) => ({
-//         ...prevValues,
-//         [row.id]: e.target.value,
-//       }));
-//       setChangedProvider((prevValues) => ({
-//         ...prevValues,
-//         [row.id]: e.target.value,
-//       }));
-//     }}
-//   >
-//     {/* Render your select options here */}
-//   </Select>
-// ) : (
-//   <MDInput
-//     variant="outlined"
-//     label={row.label}
-//     value={provider[row.id] || ""}
-//     onChange={(e) => {
-//       setProvider((prevValues) => ({
-//         ...prevValues,
-//         [row.id]: e.target.value,
-//       }));
-//       setChangedProvider((prevValues) => ({
-//         ...prevValues,
-//         [row.id]: e.target.value,
-//       }));
-//     }}
-//   />
-// )}
-// </TableCell>

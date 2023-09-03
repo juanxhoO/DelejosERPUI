@@ -23,16 +23,18 @@ import DataTable from "examples/Tables/DataTable";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-
 // Data
 import providersTableData from "layouts/tables/data/providersTableData";
 import MDButton from "components/MDButton";
+import { useNavigate } from "react-router-dom";
 
 function Providers() {
   const { columns, rows } = providersTableData();
+  const navigate = useNavigate();
   return (
     <DashboardLayout>
       <DashboardNavbar />
+
       <MDBox pt={6} pb={3}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
@@ -57,7 +59,7 @@ function Providers() {
             </Card>
 
             <MDBox mt={3}>
-              <MDButton variant="gradient" color="info" href="/providers/create">
+              <MDButton variant="gradient" color="info" onClick={() => navigate("/providers/create")} >
                 <i className="fas fa-plus"></i>
                 Create Provider
               </MDButton>

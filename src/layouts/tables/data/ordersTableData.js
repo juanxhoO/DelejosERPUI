@@ -26,28 +26,25 @@ import axios from "config/axios";
 export default function data() {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
+
+  const FetchOrders = async () => {
+    try {
+      const response = await axios.get("/orders");
+      setOrders(response.data);
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   useEffect(() => {
     //Getting all Orders
-    const FetchOrders = async () => {
-      try {
-        const response = await axios.get("/orders");
-        setOrders(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.log("error");
-      }
-    };
     FetchOrders();
   }, []);
 
-  const handleEdit = (order_number) => {
-    navigate("/orders/" + order_number + "/client-chat");
-  };
-
-   const fetchedRows = [];
+  const fetchedRows = [];
 
   fetchedRows.push(
-    ...orders.map((item) => ({
+    ...orders.map((item, index) => ({
       order_number: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
           {item.id}
@@ -61,60 +58,59 @@ export default function data() {
         </MDBox>
       ),
       country: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.country.name}
+        <MDTypography   variant="caption" color="text" fontWeight="medium">
+          {item.country?.name}
         </MDTypography>
       ),
       city: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.city.name}
+        <MDTypography   variant="caption" color="text" fontWeight="medium">
+          {item.city?.name}
         </MDTypography>
       ),
       invoice_name: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.client.name + " " + item.client.lastname}
+        <MDTypography   variant="caption" color="text" fontWeight="medium">
+          {item.client?.name + " " + item.client?.lastname}
         </MDTypography>
       ),
-      send_to: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.send_to}
-        </MDTypography>
-      ),
+      // send_to: (
+      //   <MDTypography   variant="caption" color="text" fontWeight="medium">
+      //     {item.send_to}
+      //   </MDTypography>
+      // ),
       status: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+        <MDTypography   variant="caption" color="text" fontWeight="medium">
           {item.status}
         </MDTypography>
       ),
-      phone: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.phone}
-        </MDTypography>
-      ),
-      languaje: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.languaje}
-        </MDTypography>
-      ),
+      // phone: (
+      //   <MDTypography  
+      //    variant="caption" color="text" fontWeight="medium">
+      //     {item.phone}
+      //   </MDTypography>
+      // ),
+      // languaje: (
+      //   <MDTypography   variant="caption" color="text" fontWeight="medium">
+      //     {item.languaje}
+      //   </MDTypography>
+      // ),
       site: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+        <MDTypography   variant="caption" color="text" fontWeight="medium">
           {item.site}
         </MDTypography>
       ),
-      total: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {item.total}
-        </MDTypography>
-      ),
+      // total: (
+      //   <MDTypography   variant="caption" color="text" fontWeight="medium">
+      //     {item.total}
+      //   </MDTypography>
+      // ),
       provider_status: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+        <MDTypography   variant="caption" color="text" fontWeight="medium">
           {item.provider_status}
         </MDTypography>
       ),
       action_client: (
         <MDTypography
           onClick={() => navigate("/orders/" + item.id + "/client-chat/")}
-          component="a"
-          href="#"
           variant="caption"
           color="text"
           fontWeight="medium"
@@ -125,8 +121,6 @@ export default function data() {
       action_provider: (
         <MDTypography
           onClick={() => navigate("/orders/" + item.id + "/provider-chat/")}
-          component="a"
-          href="#"
           variant="caption"
           color="text"
           fontWeight="medium"
@@ -139,22 +133,22 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "order#", accessor: "order_number", width: "45%", align: "left" },
+      { Header: "order#", accessor: "order_number", align: "left" },
       { Header: "Delivery Date", accessor: "delivery_date", align: "center" },
       { Header: "country", accessor: "country", align: "center" },
       { Header: "city", accessor: "city", align: "center" },
-      { Header: "product", accessor: "product", align: "center" },
+      // { Header: "product", accessor: "product", align: "center" },
       { Header: "Invoice Name", accessor: "invoice_name", align: "center" },
-      { Header: "Send To", accessor: "send_to", align: "center" },
+      // { Header: "Send To", accessor: "send_to", align: "center" },
       { Header: "Status", accessor: "status", align: "center" },
-      { Header: "Phone", accessor: "phone", align: "center" },
-      { Header: "Languaje", accessor: "languaje", align: "center" },
+      // { Header: "Phone", accessor: "phone", align: "center" },
+      // { Header: "Languaje", accessor: "languaje", align: "center" },
       { Header: "Site", accessor: "site", align: "center" },
-      { Header: "Total", accessor: "total", align: "center" },
+      // { Header: "Total", accessor: "total", align: "center" },
       { Header: "Provider Status", accessor: "provider_status", align: "center" },
       { Header: "Provider", accessor: "action_provider", align: "center" },
       { Header: "Client", accessor: "action_client", align: "center" },
-      { Header: "Invoice", accessor: "action_invoice", align: "center" },
+      // { Header: "Invoice", accessor: "action_invoice", align: "center" },
     ],
     rows: fetchedRows,
   };

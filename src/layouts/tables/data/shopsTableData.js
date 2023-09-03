@@ -19,7 +19,8 @@ Coded by www.creative-tim.com
 import MDTypography from "components/MDTypography";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "config/axios";
+
 
 // Images
 
@@ -35,7 +36,7 @@ export default function data() {
   useEffect(() => {
     async function fetchProviders() {
       try {
-        const response = await axios.get("http://localhost:3000/v1/shops");
+        const response = await axios.get("/shops");
         setShops(response.data);
         console.log(response.data);
       } catch (error) {
@@ -51,24 +52,24 @@ export default function data() {
     ...shops.map((shop) => ({
       name: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {shop.name}
+          {shop?.name}
         </MDTypography>
       ),
       address: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {shop.url}
+          {shop?.url}
         </MDTypography>
       ),
-      //   city: (
-      //     <MDTypography variant="caption" color="text" fontWeight="medium">
-      //       {provider.city}
-      //     </MDTypography>
-      //   ),
-         //   city: (
-      //     <MDTypography variant="caption" color="text" fontWeight="medium">
-      //       {provider.city}
-      //     </MDTypography>
-      //   ),
+        country: (
+          <MDTypography variant="caption" color="text" fontWeight="medium">
+            {shop.country?.name}
+          </MDTypography>
+        ),
+           city: (
+          <MDTypography variant="caption" color="text" fontWeight="medium">
+            {shop.city?.name}
+          </MDTypography>
+        ),
       action: (
         <MDTypography
           onClick={() => handleEdit(shop.id)}
@@ -80,7 +81,7 @@ export default function data() {
         >
           Edit
         </MDTypography>
-      ),
+      )
     }))
   );
   return {

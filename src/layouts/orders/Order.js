@@ -10,7 +10,6 @@ function Order() {
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
       <MDBox>
         <p>Order {id}</p>
       </MDBox>

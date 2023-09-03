@@ -21,7 +21,6 @@ function ClientOrder() {
   };
   return (
     <DashboardLayout>
-      <DashboardNavbar />
 
       <Card>
         <MDBox p={5}>

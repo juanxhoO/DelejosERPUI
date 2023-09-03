@@ -19,7 +19,7 @@ Coded by www.creative-tim.com
 import MDTypography from "components/MDTypography";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "config/axios";
 
 // Images
 
@@ -32,16 +32,17 @@ export default function data() {
     navigate(location.pathname + "/" + id);
   };
 
-  useEffect(() => {
-    async function fetchProviders() {
-      try {
-        const response = await axios.get("http://localhost:3000/v1/users?role=PROVIDER");
-        setProviders(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+
+  const fetchProviders = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/v1/users?role=PROVIDER");
+      setProviders(response.data);
+    } catch (error) {
+      console.log(error);
     }
+  }
+  useEffect(() => {
+
     fetchProviders();
   }, []);
 
@@ -51,44 +52,43 @@ export default function data() {
     ...providers.map((provider) => ({
       shop: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.shop.name}
+          {provider?.shop?.name || ""}
         </MDTypography>
       ),
       name: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.name}
+          {provider?.name}
         </MDTypography>
       ),
       lastname: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.lastname}
+          {provider?.lastname}
         </MDTypography>
       ),
       email: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.email}
+          {provider?.email}
         </MDTypography>
       ),
       address: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.address}
+          {provider?.address || ""}
         </MDTypography>
       ),
       country: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.country.name}
+          {provider?.country?.name || ""}
         </MDTypography>
       ),
       city: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider.city.name}
+          {provider?.city?.name}
         </MDTypography>
       ),
       phones: (
         <MDTypography
           onClick={() => handleEdit(provider.id)}
-          component="a"
-          href="#"
+
           variant="caption"
           color="info"
           fontWeight="medium"
@@ -99,15 +99,14 @@ export default function data() {
       action: (
         <MDTypography
           onClick={() => handleEdit(provider.id)}
-          component="a"
-          href="#"
+
           variant="caption"
           color="info"
           fontWeight="medium"
         >
           Edit
         </MDTypography>
-      ),
+      )
     }))
   );
   return {
@@ -120,7 +119,7 @@ export default function data() {
       { Header: "Country", accessor: "country", align: "center" },
       { Header: "City", accessor: "city", align: "center" },
       { Header: "Phones", accessor: "phones", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "Action", accessor: "action", align: "center" },
     ],
     rows: fetchedRows,
   };
