@@ -18,31 +18,29 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React components
 import MDTypography from "components/MDTypography";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "config/axios";
 import { useNavigate } from "react-router-dom";
+import PhonesTooltip from "components/PhonesTooltip";
 
 export default function data() {
   const [clients, setClients] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get("http://localhost:3000/v1/clients");
-        setClients(response.data);
-        console.log(response.data);   
-      } catch (error) {
-        console.log(error);
-      }
+  
+  const  fetchData = async function() {
+    try {
+      const response = await axios.get("/clients");
+      setClients(response.data);   
+    } catch (error) {
+      console.log(error);
     }
+  }
+  useEffect(() => {
     fetchData();
   }, []);
-
-
 
   const handleEdit = (id) => {
     console.log("edit");
     navigate("/clients/" + id );
-
   }
 
   const fetchedRows = [];
@@ -51,12 +49,7 @@ export default function data() {
     ...clients.map((client) => ({
       name: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {client.name}
-        </MDTypography>
-      ),
-      lastname: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {client.lastname}
+          {client.name} {client.lastname}
         </MDTypography>
       ),
       email: (
@@ -73,6 +66,9 @@ export default function data() {
         <MDTypography variant="caption" color="text" fontWeight="medium">
           {client.country?.name || ""}
         </MDTypography>
+      ),
+      phone: (
+          <PhonesTooltip phones={client?.phones}/>
       ),
       city: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
@@ -97,13 +93,12 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "Name", accessor: "name", align: "left" },
-      { Header: "Lastname", accessor: "lastname", align: "left" },
+      { Header: "Name", accessor: "name", align: "center" },
       { Header: "Email", accessor: "email", align: "center" },
       { Header: "Address", accessor: "address", align: "center" },
       { Header: "Country", accessor: "country", align: "center" },
       { Header: "City", accessor: "city", align: "center" },
-      // { Header: "Phone", accessor: "phone", align: "center" },
+      { Header: "Phones", accessor: "phone", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
 

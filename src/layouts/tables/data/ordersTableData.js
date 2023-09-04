@@ -53,23 +53,23 @@ export default function data() {
       delivery_date: (
         <MDBox ml={-1}>
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            {item.deliveryDate}
+            {item?.deliveryDate || ""}
           </MDTypography>
         </MDBox>
       ),
       country: (
-        <MDTypography   variant="caption" color="text" fontWeight="medium">
-          {item.country?.name}
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {item.country?.name || ""}
         </MDTypography>
       ),
       city: (
-        <MDTypography   variant="caption" color="text" fontWeight="medium">
-          {item.city?.name}
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {item.city?.name || ""}
         </MDTypography>
       ),
       invoice_name: (
-        <MDTypography   variant="caption" color="text" fontWeight="medium">
-          {item.client?.name + " " + item.client?.lastname}
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {item.client?.name + " " + item.client?.lastname || ""}
         </MDTypography>
       ),
       // send_to: (
@@ -78,8 +78,8 @@ export default function data() {
       //   </MDTypography>
       // ),
       status: (
-        <MDTypography   variant="caption" color="text" fontWeight="medium">
-          {item.status}
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {item?.status || ""}
         </MDTypography>
       ),
       // phone: (
@@ -94,8 +94,8 @@ export default function data() {
       //   </MDTypography>
       // ),
       site: (
-        <MDTypography   variant="caption" color="text" fontWeight="medium">
-          {item.site}
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {item?.site || ""}
         </MDTypography>
       ),
       // total: (
@@ -104,8 +104,8 @@ export default function data() {
       //   </MDTypography>
       // ),
       provider_status: (
-        <MDTypography   variant="caption" color="text" fontWeight="medium">
-          {item.provider_status}
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {item?.provider_status || ""}
         </MDTypography>
       ),
       action_client: (

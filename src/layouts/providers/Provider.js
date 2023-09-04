@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import { TableBody, TableContainer, TableRow, Typography, FormControl } from "@mui/material";
+import { TableBody, TableContainer, TableRow, Typography } from "@mui/material";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 // Material Dashboard 2 React example components
@@ -23,13 +23,10 @@ import Table from "@mui/material/Table";
 import TableCell from "@mui/material/TableCell";
 import MDInput from "components/MDInput";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "config/axios";
 import { useEffect, useState } from "react";
 import MDButton from "components/MDButton";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function Provider() {
@@ -42,7 +39,6 @@ function Provider() {
   const [validEmail, setValidEmail] = useState(false);
   const [provider, setProvider] = useState([]);
   const [cities, setCities] = useState([]);
-  const [changedProvider, setChangedProvider] = useState({});
   const PWD_REGEX = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
   const EMAIL_REGEX =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -62,7 +58,7 @@ function Provider() {
 
     async function fetchProvider() {
       try {
-        const response = await axios.get("http://localhost:3000/v1/users/" + id);
+        const response = await axios.get("/users/" + id);
         setProvider(response.data);
       } catch (error) {
         console.log(error);
@@ -72,9 +68,8 @@ function Provider() {
     //Fetching Countries
     async function fetchCountries() {
       try {
-        const response = await axios.get("http://localhost:3000/v1/countries");
+        const response = await axios.get("/countries");
         setCountries(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -207,6 +202,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
+                    fullWidth
                     type="text"
                       variant="outlined"
                       label="Address"
@@ -226,7 +222,7 @@ function Provider() {
                 </TableRow>
                 <TableRow>
                   <TableCell>
-                    <Typography>Phone</Typography>
+                    <Typography>Phones</Typography>
                   </TableCell>
                   <TableCell>
                     <MDInput

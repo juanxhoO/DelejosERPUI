@@ -82,7 +82,7 @@ export default function data() {
       ),
       city: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {provider?.city?.name}
+          {provider?.city?.name || ""}
         </MDTypography>
       ),
       phones: (
