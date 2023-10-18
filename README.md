@@ -66,7 +66,6 @@ Let us know your thoughts below. And good luck with development!
 
 | [![Material Dashboard React](https://s3.amazonaws.com/creativetim_bucket/products/71/thumb/material-dashboard-react.jpg?1638950990)](http://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr)
 
-
 ## Quick start
 
 Quick start options:
@@ -81,7 +80,6 @@ Quick start options:
 ## Documentation
 
 The documentation for the Material Dashboard is hosted at our [website](https://www.creative-tim.com/learning-lab/react/overview/material-dashboard/?ref=readme-mdr).
-
 
 ## Browser Support
 
@@ -99,8 +97,6 @@ At present, we officially aim to support the last two versions of the following 
 - Issues: [Github Issues Page](https://github.com/creativetimofficial/material-dashboard-react/issues)
 - [Nepcha Analytics](https://nepcha.com?ref=readme) - Analytics tool for your website
 
-
-
 ## Licensing
 
 - Copyright 2023 [Creative Tim](https://www.creative-tim.com?ref=readme-mdr)
@@ -115,4 +111,3 @@ At present, we officially aim to support the last two versions of the following 
 - [Freebies](https://www.creative-tim.com/bootstrap-themes/free?ref=readme-mdr) from Creative Tim
 
 - [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-mdr) (earn money)
-

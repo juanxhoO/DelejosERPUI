@@ -30,7 +30,6 @@ import clientsTableData from "layouts/tables/data/clientsTableData";
 function Clients() {
   const { columns, rows } = clientsTableData();
 
-
   return (
     <DashboardLayout>
       <DashboardNavbar />

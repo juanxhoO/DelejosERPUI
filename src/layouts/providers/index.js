@@ -59,7 +59,11 @@ function Providers() {
             </Card>
 
             <MDBox mt={3}>
-              <MDButton variant="gradient" color="info" onClick={() => navigate("/providers/create")} >
+              <MDButton
+                variant="gradient"
+                color="info"
+                onClick={() => navigate("/providers/create")}
+              >
                 <i className="fas fa-plus"></i>
                 Create Provider
               </MDButton>

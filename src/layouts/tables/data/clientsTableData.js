@@ -25,23 +25,23 @@ import PhonesTooltip from "components/PhonesTooltip";
 export default function data() {
   const [clients, setClients] = useState([]);
   const navigate = useNavigate();
-  
-  const  fetchData = async function() {
+
+  const fetchData = async function () {
     try {
       const response = await axios.get("/clients");
-      setClients(response.data);   
+      setClients(response.data);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   useEffect(() => {
     fetchData();
   }, []);
 
   const handleEdit = (id) => {
     console.log("edit");
-    navigate("/clients/" + id );
-  }
+    navigate("/clients/" + id);
+  };
 
   const fetchedRows = [];
 
@@ -67,9 +67,7 @@ export default function data() {
           {client.country?.name || ""}
         </MDTypography>
       ),
-      phone: (
-          <PhonesTooltip phones={client?.phones}/>
-      ),
+      phone: <PhonesTooltip phones={client?.phones} />,
       city: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
           {client.city?.name || ""}

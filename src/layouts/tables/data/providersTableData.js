@@ -32,7 +32,6 @@ export default function data() {
     navigate(location.pathname + "/" + id);
   };
 
-
   const fetchProviders = async () => {
     try {
       const response = await axios.get("http://localhost:3000/v1/users?role=PROVIDER");
@@ -40,9 +39,8 @@ export default function data() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   useEffect(() => {
-
     fetchProviders();
   }, []);
 
@@ -108,7 +106,7 @@ export default function data() {
         >
           Edit
         </MDTypography>
-      )
+      ),
     }))
   );
   return {

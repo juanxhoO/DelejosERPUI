@@ -10,8 +10,7 @@ import { useEffect, useState } from "react";
 import MDButton from "components/MDButton";
 import PropTypes from "prop-types";
 
-function PhonesList({ phones = []}) {
-
+function PhonesList({ phones = [] }) {
   return (
     <MDBox>
       {phones.map((phone, index) => (
@@ -23,9 +22,11 @@ function PhonesList({ phones = []}) {
   );
 }
 PhonesList.propTypes = {
-  phones: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  })).isRequired,
-}
+  phones: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
 
 export default PhonesList;

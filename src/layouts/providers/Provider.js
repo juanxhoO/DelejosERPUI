@@ -107,9 +107,7 @@ function Provider() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox>
-
         <TableContainer>
-
           <MDBox onSubmit={submitChanges} component="form" p={4}>
             <Typography variant="h3">Provider {id}</Typography>
 
@@ -168,7 +166,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                    type="password"
+                      type="password"
                       variant="outlined"
                       label="Password"
                       onFocus={() => setPwdFocus(true)}
@@ -202,8 +200,8 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                    fullWidth
-                    type="text"
+                      fullWidth
+                      type="text"
                       variant="outlined"
                       label="Address"
                       value={provider.address || ""}
@@ -226,7 +224,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                    type="tel"
+                      type="tel"
                       variant="outlined"
                       label="Phone"
                       value={provider.phone || ""}
@@ -250,7 +248,7 @@ function Provider() {
                   </TableCell>
                   <TableCell>
                     <MDInput
-                    type="email"
+                      type="email"
                       onBlur={() => setEmailFocus(false)}
                       onFocus={() => setEmailFocus(true)}
                       variant="outlined"
@@ -282,34 +280,33 @@ function Provider() {
                     <Typography>Country</Typography>
                   </TableCell>
                   <TableCell>
-                      <select
-                        value={provider.country?.name}
-                        onChange={(e) => {
-                          const selectedCountryName = e.target.value;
-                          const selectedCountry = countries.find(
-                            (country) => country.name === selectedCountryName
-                          );
+                    <select
+                      value={provider.country?.name}
+                      onChange={(e) => {
+                        const selectedCountryName = e.target.value;
+                        const selectedCountry = countries.find(
+                          (country) => country.name === selectedCountryName
+                        );
 
-                          if (selectedCountry) {
-                            setInputValues((prevValues) => ({
-                              ...prevValues,
-                              countryId: selectedCountry.id,
-                            }));
-                            setProvider((prevValues) => ({
-                              ...prevValues,
-                              country: e.target.value,
-                            }));
-                            fetchCities(selectedCountry.code); // Pass the country code to fetchCities
-                          }
-                        }}
-                      >
-                        {countries.map((country) => (
-                          <option key={country.id} value={country.name}>
-                            {country.name}
-                          </option>
-                        ))}
-                      </select>
-
+                        if (selectedCountry) {
+                          setInputValues((prevValues) => ({
+                            ...prevValues,
+                            countryId: selectedCountry.id,
+                          }));
+                          setProvider((prevValues) => ({
+                            ...prevValues,
+                            country: e.target.value,
+                          }));
+                          fetchCities(selectedCountry.code); // Pass the country code to fetchCities
+                        }
+                      }}
+                    >
+                      {countries.map((country) => (
+                        <option key={country.id} value={country.name}>
+                          {country.name}
+                        </option>
+                      ))}
+                    </select>
                   </TableCell>
                 </TableRow>
 

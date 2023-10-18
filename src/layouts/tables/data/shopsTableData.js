@@ -21,7 +21,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "config/axios";
 
-
 // Images
 
 export default function data() {
@@ -60,16 +59,16 @@ export default function data() {
           {shop?.url}
         </MDTypography>
       ),
-        country: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            {shop.country?.name}
-          </MDTypography>
-        ),
-           city: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            {shop.city?.name}
-          </MDTypography>
-        ),
+      country: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {shop.country?.name}
+        </MDTypography>
+      ),
+      city: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {shop.city?.name}
+        </MDTypography>
+      ),
       action: (
         <MDTypography
           onClick={() => handleEdit(shop.id)}
@@ -81,7 +80,7 @@ export default function data() {
         >
           View
         </MDTypography>
-      )
+      ),
     }))
   );
   return {
